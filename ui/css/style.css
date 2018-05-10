@@ -248,6 +248,10 @@ label.checkbox {
   text-align: center;
 }
 
+.email {
+    display: none;
+}
+
 @media all and (max-width: 575px) {
     .header {
         width: 60%;
