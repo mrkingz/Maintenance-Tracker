@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Maintenance Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" media="screen" href="./css/font-awesome.min.css" />
+  <link rel="stylesheet" media="screen" href="./css/style.css" />
+</head>
+
+<body>
+  <section class="cover">
+    <div class="home-wrapper transparent">
+      <div class="home-page">
+        <header>
+          <div class="logo-div"><img class="logo" src="./images/workman.jpg" alt="Maintenance tracker photo"></div>
+          <div class="header-text">
+            <label>W. A. Engineering<span> &ndash;&ndash; Maintenance Tracker</span></label>
+          </div>
+          <nav class="navbar">
+            <div class="dropdown">
+              <button class="dropbtn"><i class="fa fa-caret-down"></i></button>
+              <div class="dropdown-content">
+                <a href="?page=create-request"><i class="fa fa-pencil"></i> Create request</a>
+                <a href="?page=view-request"><i class="fa fa-eye"></i> View requests</a>
+                <a href="?page=profile"><i class="fa fa-user"></i> Profile</a>
+                <a href="?page=edit-password"><i class="fa fa-edit"></i> Edit password</a>
+                <a href="index.html"><i class="fa fa-sign-out"></i> Sign out</a>
+              </div>
+            </div> 
+          </nav>
+        </header>
+        <main>
+          <div class="left-div">
+            <div class="sidebar">
+              <div style="text-align: center; border-radius: 50%">
+                <img class="logo" src="./images/photo.png" alt="">
+                <div class="greeting">Hi, Kingsley!</div>
+              </div>
+            </div>
+          </div>
+          <div class="right-div">
+            <div class="content">
+              <!-- Create request form -->
+              <div class="content-inner">
+                <div class="content-header">
+                  <h3>Create Request</h3>
+                </div>
+                <form class="form">
+                  <div class="form-group">
+                    <label for="subject">Request subject</label>
+                    <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
+                  </div>
+                  <div className="form-group" style="margin-bottom: 4px;">
+                    <label for="priority"> Request priority</label>
+                    <select class="control" id="priority" style="width: 100%; margin: 0px">
+                      <option value="">Request priority</option>
+                      <option value="">Normal</option>
+                      <option value="">Urgent</option>
+                      <option value="">Critical</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                      <label for="request-description"> Request decsription</label>
+                      <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description" ></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="files">Upload photo(s) of damage(s) (Optional)</label>
+                    <div class="files" id="files" >
+                      <input type="file" /> 
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <button class="button dark" style="width: auto">Submit</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="home-wrapper footer-content">
+        <center>
+          &copy; copy right, <script>document.write(new Date().getFullYear())</script>. All right reserved
+        </center>
+      </div>
+    </footer>
+  </section>
+  <!-- Load js script -->
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+
+</html>
