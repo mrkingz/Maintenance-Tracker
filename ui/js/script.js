@@ -38,10 +38,11 @@ $(document).ready(function () {
       $('.dropdown-content').css({'display':'none'})
   })
 
+
   $('.dropdown-content a').on('click', function(e) {
     let pageRef = $(this).prop('href').split('=')[1];
     if (pageRef) {
-      e.preventDefault();
+      //e.preventDefault();
       $('.dropdown-content').css({'display':'none'});
       $('.content h3').html(pageRef.replace('-', ' ')).css({'text-transform': 'capitalize'})
     }

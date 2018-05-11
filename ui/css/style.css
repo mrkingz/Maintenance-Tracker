@@ -220,9 +220,6 @@ form {
   margin: 20px 0 0;
   padding: 10px 5px;
   color: #4e443c;
-  background-color: #ebe9e1;
-  background-color: rgba(223,221,213,0.33);
-  background-color: #ebe9e1;
   border-radius: 3px;
   background-color: rgba(223,221,213,0.33);
   border: 1px solid rgba(1,1,1, .1);
@@ -418,11 +415,15 @@ input[type='file'] {
     overflow: hidden;
 }
 
+.dropdown button i {
+  font-size: 16px;
+} 
+
 .dropdown .dropbtn {
-    font-size: 16px;    
+    font-size: 12px;    
     border: none;
     outline: none;
-    color: #4e443c;
+    color: #0388a6;
     padding: 5px 16px;
     background-color: inherit;
     font-family: inherit;
@@ -493,6 +494,75 @@ div[placeholder]:not([placeholder=""]):empty::before {
   font-weight: normal;
   color: #464a4c;
   background-color: #fff;
+}
+
+.requset-histle-table {
+  width: calc(100% - 20px);
+}
+
+.table-wrapper {
+  border-radius: 4px;
+  border: 1px solid #e2e0d8;
+}
+
+.rTable {
+  margin: 10px;
+  display: table;
+  border-top: 1px solid #e2e0d8;
+}
+
+.rTableRow {
+  display: table-row;
+}
+
+
+.rTableHeading {
+  display: table-header-group;
+  background-color: #ddd;
+}
+
+.rTableCell, .rTableHead {
+  display: table-cell;
+  line-height: 2;
+  padding: 0px 2px;
+  margin: 500px;
+  background-color: transparent;
+  border-bottom: 5px solid #fcfcfa;
+}
+
+.rTableCell {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.rTableHeading {
+  display: table-header-group;
+  background-color: #f0efe7;
+  font-weight: bold;
+}
+
+.rTableFoot {
+  display: table-footer-group;
+  font-weight: bold;
+  background-color: #ddd;
+}
+.rTableBody {
+  display: table-row-group;
+}
+
+.rTableCell button {
+  color: #0388a6;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: #f0efe7;;
+  border: 1px solid rgba(1,1,1, .5);
+}
+
+.search {
+  float: right; 
+  width: 60%;
+  padding: 5px 0px;
+  margin: 5px 0;
 }
 
 @media all and (max-width: 575px) {
