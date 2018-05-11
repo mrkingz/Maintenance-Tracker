@@ -15,21 +15,32 @@
     <div class="home-wrapper transparent">
       <div class="home-page">
         <header>
-          <div class="logo-div"><img class="logo" src="./images/workman.jpg" alt="Maintenance tracker photo"></div>
+          <div class="logo-div">
+            <img class="logo" src="./images/workman.jpg" alt="Maintenance tracker photo">
+          </div>
           <div class="header-text">
-            <label>W. A. Engineering<span> &ndash;&ndash; Maintenance Tracker</span></label>
+            <label>W. A. Engineering
+              <span> &ndash;&ndash; Maintenance Tracker</span>
+            </label>
           </div>
           <nav class="navbar">
             <div class="dropdown">
-              <button class="dropbtn"><i class="fa fa-caret-down"></i></button>
+              <button class="dropbtn">Activities &nbsp;
+                <i class="fa fa-caret-down"></i>
+              </button>
               <div class="dropdown-content">
-                <a href="?page=create-request"><i class="fa fa-pencil"></i> Create request</a>
-                <a href="?page=view-request"><i class="fa fa-eye"></i> View requests</a>
-                <a href="?page=profile"><i class="fa fa-user"></i> Profile</a>
-                <a href="?page=edit-password"><i class="fa fa-edit"></i> Edit password</a>
-                <a href="index.html"><i class="fa fa-sign-out"></i> Sign out</a>
+                <a href="?page=create-request">
+                  <i class="fa fa-pencil"></i> Create request</a>
+                <a href="?page=equest-history">
+                  <i class="fa fa-history"></i> Request history</a>
+                <a href="?page=profile">
+                  <i class="fa fa-user"></i> Profile</a>
+                <a href="?page=edit-password">
+                  <i class="fa fa-edit"></i> Edit password</a>
+                <a href="index.html">
+                  <i class="fa fa-sign-out"></i> Sign out</a>
               </div>
-            </div> 
+            </div>
           </nav>
         </header>
         <main>
@@ -43,12 +54,12 @@
           </div>
           <div class="right-div">
             <div class="content">
-              <!-- Create request form -->
               <div class="content-inner">
                 <div class="content-header">
-                  <h3>Create Request</h3>
+                  <h3>Your Request History</h3>
                 </div>
-                <form class="form">
+                <!-- Start request form -->
+                <form class="form" style="display: none">
                   <div class="form-group">
                     <label for="subject">Request subject</label>
                     <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
@@ -63,29 +74,118 @@
                     </select>
                   </div>
                   <div className="form-group">
-                      <label for="request-description"> Request decsription</label>
-                      <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description" ></div>
+                    <label for="request-description"> Request decsription</label>
+                    <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description"></div>
                   </div>
                   <div class="form-group">
                     <label for="files">Upload photo(s) of damage(s) (Optional)</label>
-                    <div class="files" id="files" >
-                      <input type="file" /> 
+                    <div class="files" id="files">
+                      <input type="file" />
                     </div>
                   </div>
                   <div class="form-group">
-                      <button class="button dark" style="width: auto">Submit</button>
-                    </div>
+                    <button class="button dark" style="width: auto">Submit</button>
+                  </div>
                 </form>
+                <!-- End request form -->
+                <!-- Start view request-->
+                <div class="table-wrapper">
+                  <div class="search">
+                      <input class="control" type="search" placeholder="Search..."/>
+                  </div>
+                  <div class="rTable requset-histle-table">
+                    <div class="rTableRow">
+                      <div class="rTableHead">S/No.</div>
+                      <div class="rTableHead">Subject</div>
+                      <div class="rTableHead">Date</div>
+                      <div class="rTableHead">status</div>
+                      <div class="rTableHead">Details</div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">1</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">2</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">3</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">4</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">5</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">6</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">7</div>
+                      <div class="rTableCell">Faulty Gear Box</div>
+                      <div class="rTableCell">2018-05-12</div>
+                      <div class="rTableCell">Resolved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End view request -->
               </div>
             </div>
           </div>
-        </main>
       </div>
+      </main>
+    </div>
     </div>
     <footer class="footer">
       <div class="home-wrapper footer-content">
         <center>
-          &copy; copy right, <script>document.write(new Date().getFullYear())</script>. All right reserved
+          &copy; copy right,
+          <script>document.write(new Date().getFullYear())</script>. All right reserved
         </center>
       </div>
     </footer>
