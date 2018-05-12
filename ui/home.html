@@ -29,16 +29,12 @@
                 <i class="fa fa-caret-down"></i>
               </button>
               <div class="dropdown-content">
-                <a href="?page=create-request">
-                  <i class="fa fa-pencil"></i> Create request</a>
-                <a href="?page=equest-history">
-                  <i class="fa fa-history"></i> Request history</a>
-                <a href="?page=profile">
-                  <i class="fa fa-user"></i> Profile</a>
-                <a href="?page=edit-password">
-                  <i class="fa fa-edit"></i> Edit password</a>
-                <a href="index.html">
-                  <i class="fa fa-sign-out"></i> Sign out</a>
+                <a href="?page=create-request"><i class="fa fa-pencil"></i> Create request</a>
+                <a href="?page=request-history"><i class="fa fa-history"></i> Request history</a>
+                <a href="?page=view-requests"><i class="fa fa-eye"></i> View Requests</a>
+                <a href="?page=profile"><i class="fa fa-user"></i> Profile</a>
+                <a href="?page=edit-password"><i class="fa fa-edit"></i> Edit password</a>
+                <a href="index.html"><i class="fa fa-sign-out"></i> Sign out</a>
               </div>
             </div>
           </nav>
@@ -56,10 +52,10 @@
             <div class="content">
               <div class="content-inner">
                 <div class="content-header">
-                  <h3>Your Request History</h3>
+                  <h3>Requests List</h3>
                 </div>
                 <!-- Start request form -->
-                <form class="form" style="display: none">
+                <form class="create-request" style="display: none; width: 60%">
                   <div class="form-group">
                     <label for="subject">Request subject</label>
                     <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
@@ -88,18 +84,21 @@
                   </div>
                 </form>
                 <!-- End request form -->
-                <!-- Start view request-->
-                <div class="table-wrapper">
+
+                <!-- Start request history-->
+                <div class="table-wrapper request-history" style="display: none">
                   <div class="search">
-                      <input class="control" type="search" placeholder="Search..."/>
+                    <form style="margin: 0px; padding: 0;"></form>
+                    <input class="control" type="search" placeholder="Search..." />
+                    </form>
                   </div>
-                  <div class="rTable requset-histle-table">
+                  <div class="rTable request-history-table">
                     <div class="rTableRow">
-                      <div class="rTableHead">S/No.</div>
-                      <div class="rTableHead">Subject</div>
-                      <div class="rTableHead">Date</div>
-                      <div class="rTableHead">status</div>
-                      <div class="rTableHead">Details</div>
+                      <div class="rTableHeading">#</div>
+                      <div class="rTableHeading">Subject</div>
+                      <div class="rTableHeading">Date</div>
+                      <div class="rTableHeading">Status</div>
+                      <div class="rTableHeading">Details</div>
                     </div>
                     <div class="rTableRow">
                       <div class="rTableCell">1</div>
@@ -173,7 +172,60 @@
                     </div>
                   </div>
                 </div>
-                <!-- End view request -->
+                <!-- End request history-->
+
+                <!--Start view request-->
+                <div class="table-wrapper view-requests" style="display: none">
+                  <div class="search">
+                    <form style="margin: 0px; padding: 0;"></form>
+                    <input class="control" type="search" placeholder="Search..." />
+                    </form>
+                  </div>
+                  <div class="rTable view-request-table">
+                    <div class="rTableRow">
+                      <div class="rTableHeading">#</div>
+                      <div class="rTableHeading">Client</div>
+                      <div class="rTableHeading">Subject</div>
+                      <div class="rTableHeading">Priority</div>
+                      <div class="rTableHeading">Status</div>
+                      <div class="rTableHeading">Details</div>
+                    </div>
+                    <div class="rTableRow">
+                      <div class="rTableCell">1</div>
+                      <div class="rTableCell">John Ogomudia </div>
+                      <div class="rTableCell">Faulty gear box </div>
+                      <div class="rTableCell">Urgent</div>
+                      <div class="rTableCell">Approved</div>
+                      <div class="rTableCell">
+                        <button class="link">
+                          <i class="fa fa-eye"></i> Details</button>
+                      </div>
+                    </div>
+                    <div class="rTableRow">
+                        <div class="rTableCell">2</div>
+                        <div class="rTableCell">Mohammadu Garba</div>
+                        <div class="rTableCell">Break failure</div>
+                        <div class="rTableCell">Critical</div>
+                        <div class="rTableCell">Approved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                    <div class="rTableRow">
+                        <div class="rTableCell">3</div>
+                        <div class="rTableCell">Bolaji Ogundeye</div>
+                        <div class="rTableCell">Broken windscreen</div>
+                        <div class="rTableCell">Urgent</div>
+                        <div class="rTableCell">Approved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <!--End view request-->
               </div>
             </div>
           </div>
