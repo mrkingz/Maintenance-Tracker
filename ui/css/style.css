@@ -396,6 +396,12 @@ input[type='file'] {
     border: solid 1px #e2e0d8;
 }
 
+.content-wrapper {
+    border: 1px solid #e2e0d8;
+    padding: 5px; 
+    border-radius: 4px;
+}
+
 .content-header {
   padding: 20px 0 3px;
   margin-bottom: 10px;
@@ -408,65 +414,6 @@ input[type='file'] {
     float: right; 
     margin-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-.dropdown button i {
-  font-size: 16px;
-} 
-
-.dropdown .dropbtn {
-    font-size: 12px;    
-    border: none;
-    outline: none;
-    color: #0388a6;
-    padding: 5px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-    border: 1px solid #fcfcfa;
-}
-
-.dropdown:hover .dropbtn {
-   border: 1px dotted #4e443c;
-   background-color: #f9f9f9;
-   border-radius: 3px;
-}
-
-.dropdown-content {
-    display: none;
-    margin-top: 1px;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    border-radius: 4px;
-    border-left: 1px solid rgba(1,1,1, .5);
-    border-right: 1px solid rgba(1,1,1, .5);
-    border-bottom: 1px solid rgba(1,1,1, .5);
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-} 
-
-.dropdown-content a {
-    float: none;
-    font-weight: normal;
-    font-size: 12px;
-    color: black;
-    padding: 8px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    border-top: 1px solid rgba(1,1,1, .5);
-}
-
-.dropdown-content a:hover {
-    background-color: lightblue;
-    color: #fff;
-    font-weight: 600;
 }
 
 .editable-div {
@@ -504,26 +451,14 @@ div[placeholder]:not([placeholder=""]):empty::before {
   width: calc(100% - 20px);
 }
 
-.table-wrapper {
-  border-radius: 4px;
-  border: 1px solid #e2e0d8;
-}
-
 .rTable {
   margin: 10px;
   display: table;
-  border-top: 1px solid #e2e0d8;
 }
 
 .rTableRow {
   display: table-row;
 }
-
-
-/* .rTableHeading {
-  display: table-header-group;
-  *background-color: #ddd;
-} */
 
 .rTableCell {
   font-weight: normal;
@@ -564,11 +499,13 @@ div[placeholder]:not([placeholder=""]):empty::before {
   border: 1px solid rgba(1,1,1, .5);
 }
 
+
+
 .search {
-  float: right; 
+  *float: right; 
   width: 60%;
-  padding: 5px 0px;
-  margin: 5px 0;
+  *padding: 5px 0px;
+  *margin: 5px 0;
 }
 
 @media all and (max-width: 575px) {

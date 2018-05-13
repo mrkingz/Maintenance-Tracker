@@ -31,17 +31,6 @@ $(document).ready(function () {
       window.location.href = 'home.html?page=create-request';
   })
 
-  $('.dropdown').hover(function (e) {
-    displayDropdown(e)
-  },
-    function () {
-      $('.dropdown-content').css({ 'display': 'none' })
-    })
-
-
-  $('.dropdown-content a').on('click', function (e) {
-    loadPage();
-  })
 });
 loadPage();
 
@@ -52,18 +41,4 @@ function loadPage() {
   $('.content h3').html(query.replace('-', ' ')).css({ 'text-transform': 'capitalize' })
 }
 
-function displayDropdown(e) {
-  const dropdown = $(e.target);
-  const content = $('.dropdown-content');
-
-  let top = dropdown.position().top;
-  let height = parseInt(dropdown.css('height').replace('px', ''));
-  let width = parseInt(dropdown.css('width').replace('px', ''));
-  let contWidth = parseInt(content.css('width').replace('px', ''));
-  content.css({
-    'top': (top + height) + 'px',
-    'left': (dropdown.position().left - contWidth + width) + 'px',
-  });
-  $('.dropdown-content').css({ 'display': 'block' });
-}
 
