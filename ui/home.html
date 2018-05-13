@@ -26,16 +26,22 @@
           </div>
           <nav class="navbar">
             <div class="dropdown" id="activities">
-              <button class="dropbtn" id="activities" >Activities &nbsp;
+              <button class="dropbtn" id="activities">Activities &nbsp;
                 <i class="fa fa-caret-down"></i>
               </button>
               <div class="dropdown-content">
-                <a href="?page=create-request"><i class="fa fa-pencil"></i> Create request</a>
-                <a href="?page=request-history"><i class="fa fa-history"></i> Request history</a>
-                <a href="?page=view-requests"><i class="fa fa-eye"></i> View Requests</a>
-                <a href="?page=profile"><i class="fa fa-user"></i> Profile</a>
-                <a href="?page=edit-password"><i class="fa fa-edit"></i> Edit password</a>
-                <a href="index.html"><i class="fa fa-sign-out"></i> Sign out</a>
+                <a href="?page=create-request">
+                  <i class="fa fa-pencil"></i> Create request</a>
+                <a href="?page=request-history">
+                  <i class="fa fa-history"></i> Request history</a>
+                <a href="?page=view-requests">
+                  <i class="fa fa-eye"></i> View Requests</a>
+                <a href="?page=profile">
+                  <i class="fa fa-user"></i> Profile</a>
+                <a href="?page=edit-password">
+                  <i class="fa fa-edit"></i> Edit password</a>
+                <a href="index.html">
+                  <i class="fa fa-sign-out"></i> Sign out</a>
               </div>
             </div>
           </nav>
@@ -55,154 +61,158 @@
                 <div class="content-header">
                   <h3>Requests List</h3>
                 </div>
-                <!-- Start request form -->
-                <form class="create-request" style="display: none; width: 60%">
-                  <div class="form-group">
-                    <label for="subject">Request subject</label>
-                    <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
-                  </div>
-                  <div className="form-group" style="margin-bottom: 4px;">
-                    <label for="priority"> Request priority</label>
-                    <select class="control" id="priority" style="width: 100%; margin: 0px">
-                      <option value="">Request priority</option>
-                      <option value="">Normal</option>
-                      <option value="">Urgent</option>
-                      <option value="">Critical</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label for="request-description"> Request decsription</label>
-                    <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="files">Upload photo(s) of damage(s) (Optional)</label>
-                    <div class="files" id="files">
-                      <input type="file" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button class="button dark" style="width: auto">Submit</button>
-                  </div>
-                </form>
-                <!-- End request form -->
+                <div class="content-wrapper">
 
-                <!-- Start request history-->
-                <div class="table-wrapper request-history" style="display: none">
-                  <div class="search">
-                    <form style="margin: 0px; padding: 0;"></form>
-                    <input class="control" type="search" placeholder="Search..." />
-                    </form>
-                  </div>
-                  <div class="rTable request-history-table">
-                    <div class="rTableRow">
-                      <div class="rTableHeading">#</div>
-                      <div class="rTableHeading">Subject</div>
-                      <div class="rTableHeading">Date</div>
-                      <div class="rTableHeading">Status</div>
-                      <div class="rTableHeading">Details</div>
+                  <!-- Start request form -->
+                  <form class="create-request" style="display: none; width: 60%">
+                    <div class="form-group">
+                      <label for="subject">Request subject</label>
+                      <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
                     </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">1</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
+                    <div className="form-group" style="margin-bottom: 4px;">
+                      <label for="priority"> Request priority</label>
+                      <select class="control" id="priority" style="width: 100%; margin: 0px">
+                        <option value="">Request priority</option>
+                        <option value="">Normal</option>
+                        <option value="">Urgent</option>
+                        <option value="">Critical</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label for="request-description"> Request decsription</label>
+                      <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="files">Upload photo(s) of damage(s) (Optional)</label>
+                      <div class="files" id="files">
+                        <input type="file" />
                       </div>
                     </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">2</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
-                      </div>
+                    <div class="form-group">
+                      <button class="button dark" style="width: auto">Submit</button>
                     </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">3</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
-                      </div>
-                    </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">4</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
-                      </div>
-                    </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">5</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
-                      </div>
-                    </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">6</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
-                      </div>
-                    </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">7</div>
-                      <div class="rTableCell">Faulty Gear Box</div>
-                      <div class="rTableCell">2018-05-12</div>
-                      <div class="rTableCell">Resolved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End request history-->
+                  </form>
+                  <!-- End request form -->
 
-                <!--Start view request-->
-                <div class="table-wrapper view-requests" style="display: none">
-                  <div class="search">
-                    <form style="margin: 0px; padding: 0;"></form>
-                    <input class="control" type="search" placeholder="Search..." />
-                    </form>
-                  </div>
-                  <div class="rTable view-request-table">
-                    <div class="rTableRow">
-                      <div class="rTableHeading">#</div>
-                      <div class="rTableHeading">Client</div>
-                      <div class="rTableHeading">Subject</div>
-                      <div class="rTableHeading">Priority</div>
-                      <div class="rTableHeading">Status</div>
-                      <div class="rTableHeading">Details</div>
+                  <!-- Start request history-->
+                  <style>
+                  </style>
+                  <div class="request-history" style="display: none">
+                    <div class="search">
+                      <form style="margin: 0px; padding: 0;">
+                        <input class="control" type="search" placeholder="Search..." />
+                      </form>
                     </div>
-                    <div class="rTableRow">
-                      <div class="rTableCell">1</div>
-                      <div class="rTableCell">John Ogomudia </div>
-                      <div class="rTableCell">Faulty gear box </div>
-                      <div class="rTableCell">Urgent</div>
-                      <div class="rTableCell">Approved</div>
-                      <div class="rTableCell">
-                        <button class="link">
-                          <i class="fa fa-eye"></i> Details</button>
+                    <div class="rTable request-history-table">
+                      <div class="rTableRow">
+                        <div class="rTableHeading">#</div>
+                        <div class="rTableHeading">Subject</div>
+                        <div class="rTableHeading">Date</div>
+                        <div class="rTableHeading">Status</div>
+                        <div class="rTableHeading">Details</div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">1</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">2</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">3</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">4</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">5</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">6</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">7</div>
+                        <div class="rTableCell">Faulty Gear Box</div>
+                        <div class="rTableCell">2018-05-12</div>
+                        <div class="rTableCell">Resolved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
                       </div>
                     </div>
-                    <div class="rTableRow">
+                  </div>
+                  <!-- End request history-->
+
+                  <!--Start view request-->
+                  <div class="view-requests" style="display: none">
+                    <div class="search">
+                      <form style="margin: 0px; padding: 0;"></form>
+                      <input class="control" type="search" placeholder="Search..." />
+                      </form>
+                    </div>
+                    <div class="rTable view-request-table">
+                      <div class="rTableRow">
+                        <div class="rTableHeading">#</div>
+                        <div class="rTableHeading">Client</div>
+                        <div class="rTableHeading">Subject</div>
+                        <div class="rTableHeading">Priority</div>
+                        <div class="rTableHeading">Status</div>
+                        <div class="rTableHeading">Details</div>
+                      </div>
+                      <div class="rTableRow">
+                        <div class="rTableCell">1</div>
+                        <div class="rTableCell">John Ogomudia </div>
+                        <div class="rTableCell">Faulty gear box </div>
+                        <div class="rTableCell">Urgent</div>
+                        <div class="rTableCell">Approved</div>
+                        <div class="rTableCell">
+                          <button class="link">
+                            <i class="fa fa-eye"></i> Details</button>
+                        </div>
+                      </div>
+                      <div class="rTableRow">
                         <div class="rTableCell">2</div>
                         <div class="rTableCell">Mohammadu Garba</div>
                         <div class="rTableCell">Break failure</div>
@@ -213,7 +223,7 @@
                             <i class="fa fa-eye"></i> Details</button>
                         </div>
                       </div>
-                    <div class="rTableRow">
+                      <div class="rTableRow">
                         <div class="rTableCell">3</div>
                         <div class="rTableCell">Bolaji Ogundeye</div>
                         <div class="rTableCell">Broken windscreen</div>
@@ -224,9 +234,10 @@
                             <i class="fa fa-eye"></i> Details</button>
                         </div>
                       </div>
+                    </div>
                   </div>
+                  <!--End view request-->
                 </div>
-                <!--End view request-->
               </div>
             </div>
           </div>
