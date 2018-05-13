@@ -454,7 +454,6 @@ div[placeholder]:not([placeholder=""]):empty::before {
 .rTable {
   margin: 10px;
   display: table;
-  border-top: 1px solid #e2e0d8;
 }
 
 .rTableRow {
@@ -500,11 +499,13 @@ div[placeholder]:not([placeholder=""]):empty::before {
   border: 1px solid rgba(1,1,1, .5);
 }
 
+
+
 .search {
-  float: right; 
+  *float: right; 
   width: 60%;
-  padding: 5px 0px;
-  margin: 5px 0;
+  *padding: 5px 0px;
+  *margin: 5px 0;
 }
 
 @media all and (max-width: 575px) {

@@ -25,11 +25,11 @@
             </label>
           </div>
           <nav class="navbar">
-            <div class="dropdown" id="activities">
+            <div class="dropdown" id="activities-dropdown">
               <button class="dropbtn" id="activities">Activities &nbsp;
                 <i class="fa fa-caret-down"></i>
               </button>
-              <div class="dropdown-content">
+              <div class="dropdown-content" id='activities-menu'>
                 <a href="?page=create-request">
                   <i class="fa fa-pencil"></i> Create request</a>
                 <a href="?page=request-history">
@@ -95,8 +95,6 @@
                   <!-- End request form -->
 
                   <!-- Start request history-->
-                  <style>
-                  </style>
                   <div class="request-history" style="display: none">
                     <div class="search">
                       <form style="margin: 0px; padding: 0;">
@@ -186,11 +184,100 @@
                   <!-- End request history-->
 
                   <!--Start view request-->
-                  <div class="view-requests" style="display: none">
-                    <div class="search">
-                      <form style="margin: 0px; padding: 0;"></form>
-                      <input class="control" type="search" placeholder="Search..." />
-                      </form>
+                  <style>
+                    .filter-btn {
+                      font-size: 11px;
+                      font-weight: normal;
+                      color: #fff;
+                      background-color: #0388a6;
+                      padding: 2.5px;
+                      border-radius: 2px;
+                      border: 1px solid #0388a6;
+                    }
+                  </style>
+                  <style>
+                    [type="search"] {
+                      direction: ltr;
+                      width: 50%;
+                    }
+
+                    .search-conatiner {
+                      border-bottom: 1px solid #e2e0d8;
+                      padding: 10px 0px 7px;
+                      direction: rtl;
+                      overflow: hidden;
+                    }
+
+                    .search-conatiner form {
+                      padding: 0;
+                    }
+
+                    .search-conatiner select {
+                      padding: 2px;
+                      font-size: 10px;
+                      width: 100%;
+                      border-radius: 2px;
+                    }
+
+                    .search-conatiner form button {
+                      float: right;
+                      direction: ltr;
+                      font-size: 12px;
+                      padding: 4.2px;
+                      color: #fff;
+                      margin-left: 4px;
+                      background-color: #0388a6;
+                      border-radius: 2px;
+                      border: 1px solid#065b6e;
+                    }
+
+                    .search-conatiner button i {
+                      font-size: 12px;
+                    }
+
+                    #filters-menu div {
+                      padding: 2px;
+                    }
+                    #filters-menu button {
+                      width: 100%;
+                      margin-bottom: 2px;
+                    }
+                  </style>
+                  <div class="view-requests" style="display: none;">
+                    <div search="conatiner">
+                      <div class="search-conatiner">
+                        <form>
+                          <div class="dropdown" style="float: right" id="filters-dropdown">
+                            <button class="filter" id="filters-btn" onclick="return false">
+                              <i class="fa fa-filter"></i> filter &nbsp;
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content" id="filters-menu" style="min-width: auto">
+                              <div>
+                                <select class="control" name="" id="">
+                                  <option value="">By priority</option>
+                                  <option value="">Normal</option>
+                                  <option value="">Urgent</option>
+                                  <option value="">Critical</option>
+                                </select>
+                              </div>
+                              <div>
+                                <select class="control" name="" id="">
+                                  <option value="">By status</option>
+                                  <option value="">Pending</option>
+                                  <option value="">Approved</option>
+                                  <option value="">Rejected</option>
+                                  <option value="">Resolved</option>
+                                </select>
+                              </div>
+                              <div>
+                                <button id="send-filters" onclick="return false"> Send</button>
+                              </div>
+                            </div>
+                          </div>
+                          <input class="control" type="search" style="float: right">
+                        </form>
+                      </div>
                     </div>
                     <div class="rTable view-request-table">
                       <div class="rTableRow">
