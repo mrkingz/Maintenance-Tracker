@@ -49,7 +49,7 @@ function loadPage() {
   let query = window.location.search.split('=')[1];
   $('.dropdown-content').css({ 'display': 'none' });
   $('.'+query).show();
-  $('.content h3').html(query.replace('-', ' ')).css({ 'text-transform': 'capitalize' })
+  $('.content h3').html(query.replace('-', ' ')).css({ 'text-transform': 'capitalize' });
 }
 
 

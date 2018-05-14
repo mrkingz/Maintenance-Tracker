@@ -16,20 +16,22 @@
     <div class="home-wrapper transparent">
       <div class="home-page">
         <header>
-          <div class="logo-div">
-            <img class="logo" src="./images/workman.jpg" alt="Maintenance tracker photo">
+          <div>
+            <div class="logo-div">
+              <img class="logo" src="./images/workman.jpg" alt="Maintenance tracker photo">
+            </div>
+            <div class="header-text">
+              <label>W. A. Engineering
+                <span> &ndash;&ndash; Maintenance Tracker</span>
+              </label>
+            </div>
           </div>
-          <div class="header-text">
-            <label>W. A. Engineering
-              <span> &ndash;&ndash; Maintenance Tracker</span>
-            </label>
-          </div>
-          <nav class="navbar">
-            <div class="dropdown" id="activities-dropdown">
-              <button class="dropbtn" id="activities">Activities &nbsp;
-                <i class="fa fa-caret-down"></i>
+          <div class="navbar" style="overflow: unset;">
+            <div class="dropdown">
+              <button class="dropbtn" id="activities">
+                <span class="nav-menu"></span>  
               </button>
-              <div class="dropdown-content" id='activities-menu'>
+              <div id="activities-menu" class="dropdown-content">
                 <a href="?page=create-request">
                   <i class="fa fa-pencil"></i> Create request</a>
                 <a href="?page=request-history">
@@ -44,7 +46,7 @@
                   <i class="fa fa-sign-out"></i> Sign out</a>
               </div>
             </div>
-          </nav>
+          </div>
         </header>
         <main>
           <div class="left-div">
@@ -189,8 +191,8 @@
                       <div search="container">
                         <div class="search-container">
                           <form>
-                            <div class="dropdow" style="float: right" id="filters-dropdown">
-                              <button class="filte" id="filters-bt" onclick="return false">
+                            <div class="dropdow" id="filters-dropdown">
+                              <button class="filter"  onClick="displayDropdown('filters-menu'); return false">
                                 <i class="fa fa-filter"></i> filter &nbsp;
                                 <i class="fa fa-caret-down"></i>
                               </button>
@@ -332,9 +334,6 @@
                       </div>
                     </div>
                     <!-- End details -->
-
-                  </div>
-                  <!--End view request-->
                 </div>
               </div>
             </div>
