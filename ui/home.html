@@ -184,74 +184,13 @@
                   <!-- End request history-->
 
                   <!--Start view request-->
-                  <style>
-                    .filter-btn {
-                      font-size: 11px;
-                      font-weight: normal;
-                      color: #fff;
-                      background-color: #0388a6;
-                      padding: 2.5px;
-                      border-radius: 2px;
-                      border: 1px solid #0388a6;
-                    }
-                  </style>
-                  <style>
-                    [type="search"] {
-                      direction: ltr;
-                      width: 50%;
-                    }
-
-                    .search-container {
-                      border-bottom: 1px solid #e2e0d8;
-                      padding: 10px 0px 7px;
-                      direction: rtl;
-                      overflow: hidden;
-                    }
-
-                    .search-container form {
-                      padding: 0;
-                    }
-
-                    .search-container select {
-                      padding: 2px;
-                      font-size: 10px;
-                      width: 100%;
-                      border-radius: 2px;
-                    }
-
-                    .search-container form button {
-                      float: right;
-                      direction: ltr;
-                      font-size: 12px;
-                      padding: 4.2px;
-                      color: #fff;
-                      margin-left: 4px;
-                      background-color: #0388a6;
-                      border-radius: 2px;
-                      border: 1px solid#065b6e;
-                    }
-
-                    .search-container button i {
-                      font-size: 12px;
-                    }
-
-                    #filters-menu div {
-                      padding: 2px;
-                    }
-
-                    #filters-menu button {
-                      width: 100%;
-                      margin-bottom: 2px;
-                    }
-
-                  </style>
                   <div class="view-requests" style="display: none;">
                     <div class="requests">
                       <div search="container">
                         <div class="search-container">
                           <form>
-                            <div class="dropdown" style="float: right" id="filters-dropdown">
-                              <button class="filter" id="filters-btn" onclick="return false">
+                            <div class="dropdow" style="float: right" id="filters-dropdown">
+                              <button class="filte" id="filters-bt" onclick="return false">
                                 <i class="fa fa-filter"></i> filter &nbsp;
                                 <i class="fa fa-caret-down"></i>
                               </button>
@@ -326,57 +265,9 @@
                         </div>
                       </div>
                     </div>
+
+                    <!-- Start details -->
                     <div class="details">
-                      <style>
-
-                        .data {
-                          margin-top: 0;
-                          margin-bottom: 5px;
-                          padding: 3px 8px;
-                          background-color: #fff;
-                          border-radius: 4px;
-                          border: 1px solid #e2e0d8;
-                          font-size: 12px;
-                          font-weight: normal;
-                        }
-
-                        .data-group {
-                          margin: 5px 10px;
-                          display: block;
-                        }
-
-                        .buttons-div {
-                          margin: 5px 0;
-                        }
-
-                        .save {
-                          border-radius: 3px;
-                          padding: 3px 5px;
-                          color: #fff;
-                          margin: 0;
-                        }
-
-                        .cancel {
-                          font-size: 12px;
-                          border-radius: 0;
-                          background-color: transparent;
-                          color: #0388a6;
-                          border: none;
-                        }
-
-                        .status-update {
-                          display: none;
-                        }
-
-                        #update {
-                          color:#0388a6; 
-                          border-radius: 4px; 
-                          padding: 6px 8px; 
-                          font-size: .75em; 
-                          background-color: #fff; 
-                          border: 1px dotted #0388a6
-                        }
-                      </style>
                       <div class="data-group">
                         <label for="">Staff ID</label>
                         <div class="data">
@@ -420,17 +311,18 @@
                       <div class="data-group">
                         <label for="">Request status</label>
                         <div class="data" style="width: 50%">
-                          <span>Pending</span>
+                          <span id="status">Pending</span>
                           <div class="status-update">
-                            <select class="control" name="" id="" style="width: 100%">
-                              <option value="">Pending</option>
-                              <option value="">Approved</option>
-                              <option value="">Reject</option>
-                              <option value="">Resolved</option>
+                            <select class="control" name="" id="" style="width: 100%; margin-top: 4px">
+                              <option value="">Select status</option>
+                              <option value="Pending">Pending</option>
+                              <option value="Approved">Approved</option>
+                              <option value="Rejected">Reject</option>
+                              <option value="Resolved">Resolved</option>
                             </select>
                             <div class="buttons-div">
                               <button class="dark save" style="width: auto">Update</button>
-                              <button class="cancel">Cancel</button>
+                              <button class="cancel" id="cancel">Cancel</button>
                             </div>
                           </div>
                         </div>
@@ -439,6 +331,8 @@
                         <button id="update">Update status</button>
                       </div>
                     </div>
+                    <!-- End details -->
+
                   </div>
                   <!--End view request-->
                 </div>
