@@ -201,25 +201,25 @@
                       width: 50%;
                     }
 
-                    .search-conatiner {
+                    .search-container {
                       border-bottom: 1px solid #e2e0d8;
                       padding: 10px 0px 7px;
                       direction: rtl;
                       overflow: hidden;
                     }
 
-                    .search-conatiner form {
+                    .search-container form {
                       padding: 0;
                     }
 
-                    .search-conatiner select {
+                    .search-container select {
                       padding: 2px;
                       font-size: 10px;
                       width: 100%;
                       border-radius: 2px;
                     }
 
-                    .search-conatiner form button {
+                    .search-container form button {
                       float: right;
                       direction: ltr;
                       font-size: 12px;
@@ -231,95 +231,212 @@
                       border: 1px solid#065b6e;
                     }
 
-                    .search-conatiner button i {
+                    .search-container button i {
                       font-size: 12px;
                     }
 
                     #filters-menu div {
                       padding: 2px;
                     }
+
                     #filters-menu button {
                       width: 100%;
                       margin-bottom: 2px;
                     }
+
                   </style>
                   <div class="view-requests" style="display: none;">
-                    <div search="conatiner">
-                      <div class="search-conatiner">
-                        <form>
-                          <div class="dropdown" style="float: right" id="filters-dropdown">
-                            <button class="filter" id="filters-btn" onclick="return false">
-                              <i class="fa fa-filter"></i> filter &nbsp;
-                              <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content" id="filters-menu" style="min-width: auto">
-                              <div>
-                                <select class="control" name="" id="">
-                                  <option value="">By priority</option>
-                                  <option value="">Normal</option>
-                                  <option value="">Urgent</option>
-                                  <option value="">Critical</option>
-                                </select>
-                              </div>
-                              <div>
-                                <select class="control" name="" id="">
-                                  <option value="">By status</option>
-                                  <option value="">Pending</option>
-                                  <option value="">Approved</option>
-                                  <option value="">Rejected</option>
-                                  <option value="">Resolved</option>
-                                </select>
-                              </div>
-                              <div>
-                                <button id="send-filters" onclick="return false"> Send</button>
+                    <div class="requests">
+                      <div search="container">
+                        <div class="search-container">
+                          <form>
+                            <div class="dropdown" style="float: right" id="filters-dropdown">
+                              <button class="filter" id="filters-btn" onclick="return false">
+                                <i class="fa fa-filter"></i> filter &nbsp;
+                                <i class="fa fa-caret-down"></i>
+                              </button>
+                              <div class="dropdown-content" id="filters-menu" style="min-width: auto">
+                                <div>
+                                  <select class="control" name="" id="">
+                                    <option value="">By priority</option>
+                                    <option value="">Normal</option>
+                                    <option value="">Urgent</option>
+                                    <option value="">Critical</option>
+                                  </select>
+                                </div>
+                                <div>
+                                  <select class="control" name="" id="">
+                                    <option value="">By status</option>
+                                    <option value="">Pending</option>
+                                    <option value="">Approved</option>
+                                    <option value="">Rejected</option>
+                                    <option value="">Resolved</option>
+                                  </select>
+                                </div>
+                                <div>
+                                  <button id="send-filters" onclick="return false"> Send</button>
+                                </div>
                               </div>
                             </div>
+                            <input class="control" type="search" style="float: right">
+                          </form>
+                        </div>
+                      </div>
+                      <div class="rTable view-request-table">
+                        <div class="rTableRow">
+                          <div class="rTableHeading">#</div>
+                          <div class="rTableHeading">Client</div>
+                          <div class="rTableHeading">Subject</div>
+                          <div class="rTableHeading">Priority</div>
+                          <div class="rTableHeading">Status</div>
+                          <div class="rTableHeading">Details</div>
+                        </div>
+                        <div class="rTableRow">
+                          <div class="rTableCell">1</div>
+                          <div class="rTableCell">John Ogomudia </div>
+                          <div class="rTableCell">Faulty gear box </div>
+                          <div class="rTableCell">Urgent</div>
+                          <div class="rTableCell">Approved</div>
+                          <div class="rTableCell">
+                            <button class="link">
+                              <i class="fa fa-eye"></i> Details</button>
                           </div>
-                          <input class="control" type="search" style="float: right">
-                        </form>
+                        </div>
+                        <div class="rTableRow">
+                          <div class="rTableCell">2</div>
+                          <div class="rTableCell">Mohammadu Garba</div>
+                          <div class="rTableCell">Break failure</div>
+                          <div class="rTableCell">Critical</div>
+                          <div class="rTableCell">Approved</div>
+                          <div class="rTableCell">
+                            <button class="link">
+                              <i class="fa fa-eye"></i> Details</button>
+                          </div>
+                        </div>
+                        <div class="rTableRow">
+                          <div class="rTableCell">3</div>
+                          <div class="rTableCell">Bolaji Ogundeye</div>
+                          <div class="rTableCell">Broken windscreen</div>
+                          <div class="rTableCell">Urgent</div>
+                          <div class="rTableCell">Approved</div>
+                          <div class="rTableCell">
+                            <button class="link">
+                              <i class="fa fa-eye"></i> Details</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="rTable view-request-table">
-                      <div class="rTableRow">
-                        <div class="rTableHeading">#</div>
-                        <div class="rTableHeading">Client</div>
-                        <div class="rTableHeading">Subject</div>
-                        <div class="rTableHeading">Priority</div>
-                        <div class="rTableHeading">Status</div>
-                        <div class="rTableHeading">Details</div>
-                      </div>
-                      <div class="rTableRow">
-                        <div class="rTableCell">1</div>
-                        <div class="rTableCell">John Ogomudia </div>
-                        <div class="rTableCell">Faulty gear box </div>
-                        <div class="rTableCell">Urgent</div>
-                        <div class="rTableCell">Approved</div>
-                        <div class="rTableCell">
-                          <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                    <div class="details">
+                      <style>
+
+                        .data {
+                          margin-top: 0;
+                          margin-bottom: 5px;
+                          padding: 3px 8px;
+                          background-color: #fff;
+                          border-radius: 4px;
+                          border: 1px solid #e2e0d8;
+                          font-size: 12px;
+                          font-weight: normal;
+                        }
+
+                        .data-group {
+                          margin: 5px 10px;
+                          display: block;
+                        }
+
+                        .buttons-div {
+                          margin: 5px 0;
+                        }
+
+                        .save {
+                          border-radius: 3px;
+                          padding: 3px 5px;
+                          color: #fff;
+                          margin: 0;
+                        }
+
+                        .cancel {
+                          font-size: 12px;
+                          border-radius: 0;
+                          background-color: transparent;
+                          color: #0388a6;
+                          border: none;
+                        }
+
+                        .status-update {
+                          display: none;
+                        }
+
+                        #update {
+                          color:#0388a6; 
+                          border-radius: 4px; 
+                          padding: 6px 8px; 
+                          font-size: .75em; 
+                          background-color: #fff; 
+                          border: 1px dotted #0388a6
+                        }
+                      </style>
+                      <div class="data-group">
+                        <label for="">Staff ID</label>
+                        <div class="data">
+                          18943485
                         </div>
                       </div>
-                      <div class="rTableRow">
-                        <div class="rTableCell">2</div>
-                        <div class="rTableCell">Mohammadu Garba</div>
-                        <div class="rTableCell">Break failure</div>
-                        <div class="rTableCell">Critical</div>
-                        <div class="rTableCell">Approved</div>
-                        <div class="rTableCell">
-                          <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                      <div class="data-group">
+                        <label for="">Department</label>
+                        <div class="data">
+                          Automobiles
                         </div>
                       </div>
-                      <div class="rTableRow">
-                        <div class="rTableCell">3</div>
-                        <div class="rTableCell">Bolaji Ogundeye</div>
-                        <div class="rTableCell">Broken windscreen</div>
-                        <div class="rTableCell">Urgent</div>
-                        <div class="rTableCell">Approved</div>
-                        <div class="rTableCell">
-                          <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                      <div class="data-group">
+                        <label for="">Subject</label>
+                        <div class="data">
+                          Faulty gear box
                         </div>
+                      </div>
+                      <div class="data-group">
+                        <label for="">Description</label>
+                        <div class="data">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                          mollit anim id est laborum.
+                        </div>
+                      </div>
+                      <div class="data-group">
+                        <label for="">Request date</label>
+                        <div class="data">
+                          12/05/2018
+                        </div>
+                      </div>
+                      <div class="data-group">
+                        <label for="">Priority</label>
+                        <div class="data">
+                          Urgent
+                        </div>
+                      </div>
+                      <div class="data-group">
+                        <label for="">Request status</label>
+                        <div class="data" style="width: 50%">
+                          <span>Pending</span>
+                          <div class="status-update">
+                            <select class="control" name="" id="" style="width: 100%">
+                              <option value="">Pending</option>
+                              <option value="">Approved</option>
+                              <option value="">Reject</option>
+                              <option value="">Resolved</option>
+                            </select>
+                            <div class="buttons-div">
+                              <button class="dark save" style="width: auto">Update</button>
+                              <button class="cancel">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="data-group">
+                        <button id="update">Update status</button>
                       </div>
                     </div>
                   </div>
