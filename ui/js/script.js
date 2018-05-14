@@ -38,6 +38,10 @@ $(document).ready(function () {
 
   })
 
+  $('#update, #cancel').on('click', function() {
+    $('.status-update, #status, #update').toggle();
+  })
+
 });
 loadPage();
 

@@ -500,18 +500,118 @@ div[placeholder]:not([placeholder=""]):empty::before {
   border: 1px solid rgba(1,1,1, .5);
 }
 
-
-
-.search {
-  *float: right; 
-  width: 60%;
-  *padding: 5px 0px;
-  *margin: 5px 0;
-}
-
 .details {
   display: none;
   width: 60%;
+}
+
+.filter-btn {
+  font-size: 110px;
+  font-weight: normal;
+  color: #fff;
+  background-color: #0388a6;
+  padding: 2.5px;
+  border-radius: 2px;
+  border: 1px solid #0388a6;
+}
+
+[type="search"] {
+  direction: ltr;
+  width: 50%;
+}
+
+.search-container {
+  border-bottom: 1px solid #e2e0d8;
+  padding: 10px 0px 7px;
+  direction: rtl;
+  overflow: hidden;
+}
+
+.search-container form {
+  padding: 0;
+}
+
+.search-container select {
+  padding: 2px;
+  font-size: 10px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.search-container form button {
+  float: right;
+  direction: ltr;
+  font-size: 12px;
+  padding: 4.2px;
+  color: #fff;
+  margin-left: 4px;
+  background-color: #0388a6;
+  border-radius: 2px;
+  border: 1px solid#065b6e;
+}
+
+.search-container button i {
+  font-size: 12px;
+}
+
+#filters-menu div {
+  padding: 2px;
+}
+
+#filters-menu button {
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.data {
+  margin-top: 0;
+  margin-bottom: 5px;
+  padding: 3px 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #e2e0d8;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.data-group {
+  margin: 5px 10px;
+  display: block;
+}
+
+.buttons-div {
+  margin: 5px 0;
+}
+
+.status-update button {
+  font-size: 11px;
+}
+
+.save {
+  border-radius: 3px;
+  padding: 5px;
+  color: #fff;
+  margin-right: 5px;
+}
+
+.cancel {
+  border-radius: 0;
+  background-color: transparent;
+  color: #0388a6;
+  border: none;
+}
+
+.status-update {
+  display: none;
+}
+
+#update {
+  color: #0388a6;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: .7em;
+  background-color: #fff;
+  border: 1px dotted #0388a6
 }
 
 @media all and (max-width: 575px) {
