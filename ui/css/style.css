@@ -532,38 +532,41 @@ div[placeholder]:not([placeholder=""]):empty::before {
   width: 50%;
 }
 
-.search-container {
+ .search-container {
   border-bottom: 1px solid #e2e0d8;
-  padding: 10px 0px 7px;
+  padding: 10px 0px 5px;
   direction: rtl;
-  overflow: hidden;
-}
+} 
 
 .search-container form {
   padding: 0;
 }
 
 .search-container select {
-  padding: 2px;
-  font-size: 10px;
+  padding: 4px;
+  font-size: 12px;
   width: 100%;
   border-radius: 2px;
+  direction: ltr;
 }
 
 .search-container form button {
-  float: right;
-  direction: ltr;
   font-size: 12px;
-  padding: 4.2px;
+  padding: 4px;
   color: #fff;
-  margin-left: 4px;
-  background-color: #0388a6;
+  background: #0388a6;
   border-radius: 2px;
   border: 1px solid#065b6e;
 }
 
-.search-container button i {
+button i {
   font-size: 12px;
+}
+
+button.filter {
+  direction: ltr; 
+  margin-left: 4px; 
+  font-size: 12px
 }
 
 #filters-menu div {

@@ -1,5 +1,6 @@
 
 $('#activities, .dropdown-content a').hover(function(e) {
+  $('.dropdown-content').hide()
   displayDropdown($('#activities').siblings('.dropdown-content').prop('id'))
 }, 
 function(e) {
@@ -12,7 +13,7 @@ const displayDropdown = function (target) {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
-  if (!event.target.matches('.dropbtn') && !event.target.matches('.nav-menu, .filter, i')) {
+  if (!event.target.matches('.dropbtn') && !event.target.matches('.nav-menu, .filter, i, select')) {
 
     let dropdowns = $(".dropdown-content");
 
