@@ -490,6 +490,7 @@ div[placeholder]:not([placeholder=""]):empty::before {
   display: table-row-group;
 }
 
+.mini,
 .rTableCell button {
   color: #0388a6;
   font-size: 10px;
@@ -508,11 +509,20 @@ div[placeholder]:not([placeholder=""]):empty::before {
   *margin: 5px 0;
 }
 
+.details {
+  display: none;
+  width: 60%;
+}
+
 @media all and (max-width: 575px) {
     .header {
         width: 60%;
         font-size: 1.7em;
         margin: 15px auto;
+    }
+
+    .details {
+      width: 100%;
     }
 
     .index-wrapper {
@@ -533,6 +543,9 @@ div[placeholder]:not([placeholder=""]):empty::before {
     .header  {
         width: 50%;
     }
+    .details {
+      width: 100%;
+    }
 
     .index-wrapper {
         width: 50%;
@@ -551,6 +564,10 @@ div[placeholder]:not([placeholder=""]):empty::before {
 @media all and (min-width: 676px) and (max-width: 877px) {
     .header {
         width: 40%;
+    }
+
+    .details {
+      width: 80%;
     }
 
     .index-wrapper {

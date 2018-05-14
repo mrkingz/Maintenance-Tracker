@@ -31,6 +31,13 @@ $(document).ready(function () {
       window.location.href = 'home.html?page=create-request';
   })
 
+  $('.rTableCell button.link').on('click', function(e) {
+    e.preventDefault()
+    $('h3').html('Request Details') 
+    $('.details, .requests').toggle();
+
+  })
+
 });
 loadPage();
 
@@ -40,5 +47,6 @@ function loadPage() {
   $('.'+query).show();
   $('.content h3').html(query.replace('-', ' ')).css({ 'text-transform': 'capitalize' })
 }
+
 
 
