@@ -12,9 +12,6 @@ body {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.5;
-    *color: #f0efe7;
-    *color: #0388a6;
-    *color: #f14e32;
     color: #4e443c;
     background-color: #f0efe7
 }
@@ -162,14 +159,6 @@ img.logo {
     text-shadow: 2px 2px 8px #fff;
 }
 
-.files {
-  background-color: #fff;
-  border: 1px dotted #16667D; 
-  border-radius: .2rem; 
-  padding: .1rem 1rem .2rem .2rem;
-  margin: .2rem 0rem;   
-}
-
 .form-group {
     margin-bottom: .5rem;
 }
@@ -299,8 +288,9 @@ label.checkbox {
 }
 
 input[type='file'] {
-  width: 100%;
-  font-size: .73rem;
+  width: 90%;
+  font-size: .75rem;
+  word-break: break-all;
 } 
 
 /**Remember to remove this later**/
@@ -321,12 +311,25 @@ input[type='file'] {
     margin: 4% auto;
 } 
 
+.files {
+  background-color: #fff;
+  border: 1px dotted #16667D; 
+  border-radius: .2rem; 
+  padding: .2rem;
+  margin: .2rem 0rem;  
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between; 
+}
+
 .home-page header {
     margin: 5px;
-    display: block;
     background-color: #fcfcfa;
     text-align: left;
-    *overflow: hidden; 
     line-height: 1;
     padding: 10px 20px 5px;
     border-top-left-radius: 5px;
@@ -336,14 +339,12 @@ input[type='file'] {
     border-right: solid 1px #e2e0d8;
     border-bottom: 2px solid rgba(1,1,1, .8);
 
-     position: relative;
+    position: relative;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    *-ms-flex-align: center;
-        align-items: stretch;
-    *-ms-flex-pack: justify;
+    align-items: stretch;
     justify-content: space-between; 
 }
 
@@ -408,7 +409,7 @@ input[type='file'] {
 
 .content-wrapper {
     border: 1px solid #e2e0d8;
-    padding: 5px; 
+    padding: 20px 10px; 
     border-radius: 4px;
 }
 
@@ -434,6 +435,7 @@ input[type='file'] {
   font-weight: normal;
   color: #464a4c;
   padding: 10px;
+  line-height: 1.5;
   margin: 0 0 4px;
   min-height: 120px;
   background-color: #fff;
@@ -512,8 +514,11 @@ div[placeholder]:not([placeholder=""]):empty::before {
   border: 1px solid rgba(1,1,1, .5);
 }
 
-.details {
+.hide {
   display: none;
+}
+
+.details {
   width: 60%;
 }
 
@@ -657,6 +662,25 @@ button.filter {
   width: 100%;
   background: #4e443c;
 } 
+
+.clear-file:hover{
+  text-decoration: none;
+}
+
+
+.clear-file {
+  padding: .1rem .3rem;
+  margin-left: .5rem;
+  color: #777;
+  font-size: .8rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+}
+
+span.file {
+  color:red;
+}
 
 @media all and (max-width: 575px) {
     .header {
