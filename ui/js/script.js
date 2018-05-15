@@ -31,6 +31,17 @@ $(document).ready(function () {
       window.location.href = 'home.html?page=create-request';
   })
 
+  $('.rTableCell button.link').on('click', function(e) {
+    e.preventDefault()
+    $('h3').html('Request Details') 
+    $('.details, .requests').toggle();
+
+  })
+
+  $('#update, #cancel').on('click', function() {
+    $('.status-update, #status, #update').toggle();
+  })
+
 });
 loadPage();
 
@@ -38,7 +49,8 @@ function loadPage() {
   let query = window.location.search.split('=')[1];
   $('.dropdown-content').css({ 'display': 'none' });
   $('.'+query).show();
-  $('.content h3').html(query.replace('-', ' ')).css({ 'text-transform': 'capitalize' })
+  $('.content h3').html(query.replace('-', ' ')).css({ 'text-transform': 'capitalize' });
 }
+
 
 

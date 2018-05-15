@@ -1,35 +1,27 @@
-$(document).ready(function () {
-  $('#activities-dropdown').hover(function (e) {
-    e.preventDefault();
-    displayDropdown(e, 'activities-menu')
-  })
-  // }, function(e) {
-  //   $("#"+$(e.target).siblings('.dropdown-content').prop('id')).hide();
-  // });
 
-  
-  $('.dropdown-content a').on('click', function (e) {
-    loadPage();
-  })
+$('#activities, .dropdown-content a').hover(function(e) {
+  $('.dropdown-content').hide()
+  displayDropdown($('#activities').siblings('.dropdown-content').prop('id'))
+}, 
+function(e) {
+  $('#activities').siblings('.dropdown-content').toggle()
+})
 
-  $('#filters-dropdown').hover(function(e) {
-    e.preventDefault()
-    displayDropdown(e, 'filters-menu')
-  })
-});
+const displayDropdown = function (target) {
+  $("#"+target).toggle();
+}
 
-function displayDropdown(e, id) {
-  const dropdown = $(e.target);
-  contentId = dropdown.siblings('.dropdown-content').prop('id')
-  const content = $('#'+id);
-  let top = dropdown.position().top;
-  
-  let height = parseInt(dropdown.innerHeight());
-  let width = parseInt(dropdown.innerWidth());
-  let contWidth = parseInt(content.innerWidth());
-  content.css({
-    'top': (top + height) + 'px',
-    'left': (dropdown.position().left - contWidth + width) + 'px',
-  });
-  content.toggle();
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+  if (!event.target.matches('.dropbtn') && !event.target.matches('.nav-menu, .filter, i, .dropdown-content select')) {
+
+    let dropdowns = $(".dropdown-content");
+
+    for (let i = 0; i < dropdowns.length; i++) {
+      let openDropdown = $(dropdowns[i]);
+      if (openDropdown.css('display') !== 'none') {
+        openDropdown.hide();
+      }
+    }
+  }
 }
