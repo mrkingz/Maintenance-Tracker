@@ -34,7 +34,7 @@ $(document).ready(function () {
   $('.rTableCell button.link').on('click', function(e) {
     e.preventDefault()
     $('h3').html('Request Details') 
-    $('.details, .requests').toggle();
+    $('.request-details, .requests, .requests').toggle();
 
   })
 
