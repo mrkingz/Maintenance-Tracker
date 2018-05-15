@@ -1,0 +1,24 @@
+{
+  "name": "app.js",
+  "version": "1.0.0",
+  "description": "Maintenance Tracker App is an application that provides users with the ability to reach out to\r operations or repairs department regarding repair or maintenance requests and monitor the\r status of their request.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkingz/Maintenance-Tracker.git"
+  },
+  "author": "Kingsley Frank-Demesi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrkingz/Maintenance-Tracker/issues"
+  },
+  "homepage": "https://github.com/mrkingz/Maintenance-Tracker#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  }
+}
