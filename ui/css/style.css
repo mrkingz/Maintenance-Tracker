@@ -527,7 +527,7 @@ div[placeholder]:not([placeholder=""]):empty::before {
   border: 1px solid #0388a6;
 }
 
-[type="search"] {
+.departments {
   direction: ltr;
   width: 50%;
 }
@@ -569,11 +569,13 @@ button.filter {
   font-size: 12px
 }
 
-#filters-menu div {
+#filters-menu div,
+#user-filters-menu div {
   padding: 2px;
 }
 
-#filters-menu button {
+#filters-menu button,
+#user-filters-menu button {
   width: 100%;
   margin-bottom: 2px;
 }

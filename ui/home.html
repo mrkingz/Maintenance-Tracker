@@ -98,10 +98,40 @@
 
                   <!-- Start request history-->
                   <div class="request-history" style="display: none">
-                    <div class="search">
-                      <form style="margin: 0px; padding: 0;">
-                        <input class="control" type="search" placeholder="Search..." />
-                      </form>
+                    <div search="container">
+                      <div class="search-container">
+                        <form>
+                          <div class="dropdown">
+                            <button class="filter"  onClick="displayDropdown('user-filters-menu'); return false">
+                              <i class="fa fa-filter" style="font-size: 13px"></i> filter &nbsp;
+                              <i class="fa fa-caret-down" style="font-size: 13px"></i>
+                            </button>
+                            <div class="dropdown-content" id="user-filters-menu" style="min-width: 120px">
+                              <div>
+                                <select class="control" name="" id="">
+                                  <option value="">By priority</option>
+                                  <option value="">Normal</option>
+                                  <option value="">Urgent</option>
+                                  <option value="">Critical</option>
+                                </select>
+                              </div>
+                              <div>
+                                <select class="control" name="" id="">
+                                  <option value="">By status</option>
+                                  <option value="">Pending</option>
+                                  <option value="">Approved</option>
+                                  <option value="">Rejected</option>
+                                  <option value="">Resolved</option>
+                                </select>
+                              </div>
+                              <div>
+                                <button id="send-filters" onclick="return false"> Send</button>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                        </form>
+                      </div>
                     </div>
                     <div class="rTable request-history-table">
                       <div class="rTableRow">
@@ -219,7 +249,11 @@
                                 </div>
                               </div>
                             </div>
-                            <input class="control" type="search">
+                            <select class="control departments" name="" id="" style="direction: ltr; width: 30%">
+                              <option value="">All departments</option>
+                              <option value="">Electrical</option>
+                              <option value="">Mechanical</option>
+                            </select>
                           </form>
                         </div>
                       </div>
@@ -334,6 +368,10 @@
                       </div>
                     </div>
                     <!-- End details -->
+
+                    <!-- Start user profile -->
+
+                    <!-- End user profile -->
                 </div>
               </div>
             </div>
