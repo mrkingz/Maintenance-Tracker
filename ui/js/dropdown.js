@@ -13,7 +13,7 @@ const displayDropdown = function (target) {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
-  if (!event.target.matches('.dropbtn') && !event.target.matches('.nav-menu, .filter, i, select')) {
+  if (!event.target.matches('.dropbtn') && !event.target.matches('.nav-menu, .filter, i, .dropdown-content select')) {
 
     let dropdowns = $(".dropdown-content");
 
