@@ -1,7 +1,7 @@
- 
+
 .dropdown {
-    float: right;
-    position: relative;
+    float: left;
+    overflow: hidden;
 }
 
 .dropdown button i {
@@ -13,7 +13,7 @@
     border: none;
     outline: none;
     color: #0388a6;
-    padding: 7px 10px;
+    padding: 5px 16px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
@@ -27,7 +27,6 @@
 }
 
 .dropdown-content {
-    right: 0;
     display: none;
     margin-top: 1px;
     position: absolute;
@@ -58,4 +57,3 @@
     color: #fff;
     font-weight: 600;
 }
-.show {display:block;} 
