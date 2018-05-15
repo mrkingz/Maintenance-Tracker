@@ -29,7 +29,7 @@
           <div class="navbar" style="overflow: unset;">
             <div class="dropdown">
               <button class="dropbtn" id="activities">
-                <span class="nav-menu"></span>  
+                <span class="nav-menu"></span>
               </button>
               <div id="activities-menu" class="dropdown-content">
                 <a href="?page=create-request">
@@ -103,7 +103,7 @@
                       <div class="search-container">
                         <form>
                           <div class="dropdown">
-                            <button class="filter"  onClick="displayDropdown('user-filters-menu'); return false">
+                            <button class="filter" onClick="displayDropdown('user-filters-menu'); return false">
                               <i class="fa fa-filter" style="font-size: 13px"></i> filter &nbsp;
                               <i class="fa fa-caret-down" style="font-size: 13px"></i>
                             </button>
@@ -223,7 +223,7 @@
                         <div class="search-container">
                           <form>
                             <div class="dropdown">
-                              <button class="filter"  onClick="displayDropdown('filters-menu'); return false">
+                              <button class="filter" onClick="displayDropdown('filters-menu'); return false">
                                 <i class="fa fa-filter" style="font-size: 13px"></i> filter &nbsp;
                                 <i class="fa fa-caret-down" style="font-size: 13px"></i>
                               </button>
@@ -246,7 +246,7 @@
                                   </select>
                                 </div>
                                 <div>
-                                  <button id="send-filters" onclick="return false"> Send</button>
+                                  <button id="filter-send dark" onclick="return false"> Send</button>
                                 </div>
                               </div>
                             </div>
@@ -368,10 +368,10 @@
                         <button id="update">Update status</button>
                       </div>
                     </div>
-                    <!-- End details -->               
+                    <!-- End details -->
                   </div>
                   <!-- End view request -->
-                  
+
                   <!-- Start user profile -->
                   <div class="profile hide" style="width: 60%">
                     <div class="data-group">
@@ -411,21 +411,35 @@
                       </div>
                     </div>
                   </div>
-                <!-- End user profile -->
+                  <!-- End user profile -->
+
+                  <!-- Start change password-->
+                  <div class="edit-password hide details">
+                    <form>
+                      <div class="form-group">
+                        <label for="password">Password </label>
+                          <input type="password" class="control" placeholder="Your password" />
+                      </div>
+                      <div class="form-group">
+                        <button class="button dark" style="width: auto">Continue</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!--End change passwword-->
+                </div>
               </div>
             </div>
-          </div>
         </main>
+        </div>
       </div>
-    </div>
-    <footer class="footer">
-      <div class="home-wrapper footer-content">
-        <center>
-          &copy; copy right,
-          <script>document.write(new Date().getFullYear())</script>. All right reserved
-        </center>
-      </div>
-    </footer>
+      <footer class="footer">
+        <div class="home-wrapper footer-content">
+          <center>
+            &copy; copy right,
+            <script>document.write(new Date().getFullYear())</script>. All right reserved
+          </center>
+        </div>
+      </footer>
   </section>
   <!-- Load js script -->
   <script src="./js/jquery-3.2.1.min.js"></script>
