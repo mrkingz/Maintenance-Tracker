@@ -15,7 +15,8 @@ export default class RequestController {
 	 */
 	static createRequest() {
 		return (req, res) => {
-			requests.push(req.body);
+			const { decoded, ...requestDetails } = req.body;
+			requests.push(requestDetails);
 			return res.status(201).json({
 				status: 'success',
 				data: {
