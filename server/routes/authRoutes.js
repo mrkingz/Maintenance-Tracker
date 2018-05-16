@@ -5,7 +5,7 @@ import validations from '../validations';
 const authRouter = express.Router();
 const { UserValidations } = validations;
 
-authRouter.post('/api/v1/users',
+authRouter.post('/api/v1/users/signup',
 UserValidations.isRequired(),
 UserValidations.isUique('Username'),
 UserValidations.isUique('Email'),
