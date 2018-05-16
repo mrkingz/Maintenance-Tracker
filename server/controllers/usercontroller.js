@@ -8,8 +8,6 @@ dotenv.load();
 
 const users = data.users;
 /**
- * 
- * 
  * @export
  * @class UserController
  */

@@ -12,9 +12,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(routers.authRoutes);
+app.use(routers.requestRouter);
 
 app.all('/api', (req, res) => {
   res.status('200').send('Connection ok');
+});
+
+app.all('*', (req, res) => {
+  res.status('200').send('Sorry, there is nothing here!');
 });
 
 const port = process.env.PORT || 8000;

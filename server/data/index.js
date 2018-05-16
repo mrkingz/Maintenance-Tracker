@@ -1,8 +1,10 @@
-// Array of users
+
 const users = [];
+const requests = [];
 
 const data = {
-    users
+    users,
+    requests,
 };
 
 export default data;
