@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import has from 'lodash/has';
+import Validator from 'validator';
 import data from '../data';
 
 const users = data.users;
@@ -11,10 +12,10 @@ const users = data.users;
  */
 export default class UserValidations {
   /**
-   * Validates if username is unique
-   * @param {string} string the property of the user
+   * Validates if a user sign up credential has been used
+   * @param {string} string - the property name 
    * @static
-   * @returns {function} an middleswar function that does the validation
+   * @returns {function} Returns an express middleswar function that does the validation
    * @memberof UserValidations
    */
   static isUique(string) {
@@ -40,16 +41,15 @@ export default class UserValidations {
   }
 
   /**
-   * 
-   * 
+   * Validates required fields
    * @static
-   * @returns {function} a middleware function that handles the validation
+   * @returns {function} Returns an express middleware function that handles the validation for required fields
    * @memberof UserValidations
    */
   static isRequired() {
     return (req, res, next) => {
       const { body } = req;
-      if (!_.has(body, ['username']) || !_.has(body, ['email']) || !_.has(body, ['password'])) {
+      if (!has(body, ['username']) || !has(body, ['email']) || !has(body, ['password'])) {
         const { username, email, password } = req.body;
         req.body = { username, email, password };
         return res.status(400).json({
@@ -59,6 +59,24 @@ export default class UserValidations {
       } 
 
       return next();
+    };
+  }
+
+  /**
+   * Validates email
+   * @static
+   * @return {function} Returns an express middleware function that does the validation
+   * @memberof UserValidations
+   */
+  static isValidEmail() {
+    return (req, res, next) => {
+      if (Validator.isEmail(req.body.email)) {
+        return next();
+      }
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Please, enter a valid email address'
+      });
     };
   }
 }
