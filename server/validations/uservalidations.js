@@ -18,7 +18,7 @@ export default class UserValidations {
    * @returns {function} Returns an express middleswar function that does the validation
    * @memberof UserValidations
    */
-  static isUique(string) {
+  static isUnique(string) {
     return (req, res, next) => {
       let isUnique = true;
       let length = users.length;
