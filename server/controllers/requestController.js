@@ -38,7 +38,7 @@ export default class RequestController {
    * @returns {function} Returns an express middleware function that handles the GET request
    * @memberof RequestController
    */
-  static getUsers() {
+  static getUsersRequests() {
     return (req, res) => {
       const { userId } = req.body.decoded;
       const userRequests = [];
