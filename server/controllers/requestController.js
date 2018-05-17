@@ -16,13 +16,16 @@ export default class RequestController {
 	static createRequest() {
 		return (req, res) => {
 			const { decoded, ...requestDetails } = req.body;
+			const moment = new Date();
+			requestDetails.requestId = requests.length + 1;
+			requestDetails.createdAt = moment;
+			requestDetails.updatedAt = moment;
+			requestDetails.userId = decoded.userId;
 			requests.push(requestDetails);
 			return res.status(201).json({
 				status: 'success',
 				data: {
-					requestId: requests.length,
 					...requests[requests.length - 1],
-					createdAt: new Date()
 				}
 			});
 		};

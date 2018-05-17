@@ -115,11 +115,14 @@ export default class UserController {
 								return next();
 							}
 						}
+						message = 'Sorry, user does not exist';
 					}
 				} catch (error) {
 					if (error.message === 'jwt expired') {
 						message = 'Access denied! Token has expired';
-					} else message = 'Access denied! Invalid authentication token';
+					} else {
+						message = 'Access denied! Invalid authentication token';
+					}
 				}
 			}
 			return res.status(401).json({

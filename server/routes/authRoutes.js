@@ -7,8 +7,8 @@ const { UserValidations } = validations;
 
 authRouter.post('/api/v1/users/signup',
   UserValidations.isRequired(),
-  UserValidations.isUique('Username'),
-  UserValidations.isUique('Email'),
+  UserValidations.isUnique('Username'),
+  UserValidations.isUnique('Email'),
   UserValidations.isValidEmail(),
   UserController.signup());
 
