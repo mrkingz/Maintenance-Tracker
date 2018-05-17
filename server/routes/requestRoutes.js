@@ -14,6 +14,6 @@ requestRouter.route('/api/v1/users/requests')
 .all(UserController.authenticateUser())
 .post(RequestValidations.validateRequest(),
 	RequestController.createRequest())
-.get(RequestController.getUsers());
+.get(RequestController.getUsersRequests());
 	
 export default requestRouter;
