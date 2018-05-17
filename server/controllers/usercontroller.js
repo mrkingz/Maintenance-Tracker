@@ -42,7 +42,7 @@ export default class UserController {
 	/**
 	 * Sign in a dummy user with username/email and password
 	 * @static 
-	 * @returns {function} Returns an express middleware function that does the post 
+	 * @returns {function} Returns an express middleware function that handles the POST 
 	 * request to signup a user
 	 * @memberof UserController
 	 */
