@@ -1,6 +1,4 @@
-import data from '../data';
-
-const { requests } = data;
+import collections from '../collections';
 
 /** 
  * @export
@@ -13,24 +11,24 @@ export default class RequestController {
 	 * @returns {function} Return an express middleware function that handles the POST request
 	 * @memberof RequestController
 	 */
-	static createRequest() {
-		return (req, res) => {
-			const { decoded, ...requestDetails } = req.body;
-			const moment = new Date();
-      requestDetails.requestId = requests.length + 1;
+  static createRequest() {
+    return (req, res) => {
+      const { decoded, ...requestDetails } = req.body;
+      const moment = new Date();
+      requestDetails.requestId = collections.getRequests().length + 1;
       requestDetails.userId = decoded.userId;
-			requestDetails.createdAt = moment;
-			requestDetails.updatedAt = moment;
-			requests.push(requestDetails);
-			return res.status(201).json({
-				status: 'success',
-				data: {
-					...requests[requests.length - 1],
-				}
-			});
-		};
+      requestDetails.createdAt = moment;
+      requestDetails.updatedAt = moment;
+      collections.setRequests(requestDetails);
+      return res.status(201).json({
+        status: 'success',
+        data: {
+          ...collections.getRequests()[collections.getRequests().length - 1],
+        }
+      });
+    };
   }
-  
+
   /**
    * Gets all user's requests
    * @static
@@ -41,10 +39,10 @@ export default class RequestController {
     return (req, res) => {
       const { userId } = req.body.decoded;
       const userRequests = [];
-      const length = requests.length;
+      const length = collections.getRequests().length;
       for (let i = 0; i < length; i++) {
-        if (parseInt(requests[i].userId, 10) === parseInt(userId, 10)) {
-          userRequests.push(requests[i]);
+        if (parseInt(collections.getRequests()[i].userId, 10) === parseInt(userId, 10)) {
+          userRequests.push(collections.getRequests()[i]);
         }
       }
 
@@ -72,13 +70,14 @@ export default class RequestController {
   static getUserRequest() {
     return (req, res) => {
       let request;
+      const requestId = req.params.requestId;
       const { userId } = req.body.decoded;
-      const length = requests.length;
+      const length = collections.getRequests().length;
       for (let i = 0; i < length; i++) {
-        if (parseInt(requests[i].userId, 10) === parseInt(userId, 10) 
-            && parseInt(requests[i].requestId, 10) === parseInt(req.params.requestId, 10)) {
-              request = requests[i];
-              break;
+        if (parseInt(collections.getRequests()[i].userId, 10) === parseInt(userId, 10)
+          && parseInt(collections.getRequests()[i].requestId, 10) === parseInt(requestId, 10)) {
+          request = collections.getRequests()[i];
+          break;
         }
       }
       if (request) {
@@ -92,6 +91,59 @@ export default class RequestController {
       return res.status(404).json({
         status: 'fail',
         message: 'Request not found'
+      });
+    };
+  }
+
+  /**
+   * Updates a request
+   * @static
+   * @returns {function} An express middleware function that handles the PUT request
+   * @memberof RequestController
+   */
+  static updateRequest() {
+    return (req, res) => {
+      const requestId = req.params.requestId;
+      const { decoded, ...updates } = req.body;
+      const length = collections.getRequestsCount();
+
+      let j = -1;
+      for (let i = 0; i < length; i++) {
+        if (parseInt(collections.getRequests()[i].requestId, 10) === parseInt(requestId, 10)) {
+          j = i;
+          break;
+        }
+      }
+
+      if (j !== -1) {
+        const request = collections.getRequests()[j];
+        let message;
+        if (decoded.isAdmin) {
+          request.status = updates.status;
+          message = `Request status successfully marked as ${updates.status}`;
+        } else if (parseInt(request.userId, 10) === parseInt(decoded.userId, 10)) {
+          request.subject = updates.subject || request.subject;
+          request.priority = updates.priority || request.priority;
+          request.description = updates.description || request.description;
+          request.department = updates.department || request.department;
+          message = 'Your request was successfully updated';
+        }
+
+        if (message) {
+          return res.status(202).json({
+            status: 'success',
+            message,
+            data: {
+              request: {
+                ...request
+              }
+            }
+          });
+        }
+      }
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Sorry, request not found'
       });
     };
   }
