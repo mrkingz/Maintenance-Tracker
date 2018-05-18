@@ -1,8 +1,6 @@
 import has from 'lodash/has';
 import Validator from 'validator';
-import data from '../data';
-
-const users = data.users;
+import collections from '../collections';
 
 /**
  * 
@@ -21,10 +19,10 @@ export default class UserValidations {
   static isUnique(string) {
     return (req, res, next) => {
       let isUnique = true;
-      let length = users.length;
+      let length = collections.getUsersCount();
 
       for (let i = 0; i < length; i++) {
-        if (users[i][string.toLowerCase()] === req.body[string.toLowerCase()]) {
+        if (collections.getUsers()[i][string.toLowerCase()] === req.body[string.toLowerCase()]) {
           isUnique = false;
           break;
         }

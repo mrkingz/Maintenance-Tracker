@@ -2,11 +2,10 @@ import _ from 'lodash';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import data from '../data';
+import collections from '../collections';
 
 dotenv.load();
 
-const users = data.users;
 /**
  * @export
  * @class UserController
@@ -22,9 +21,9 @@ export default class UserController {
 		return (req, res) => {
 			const hashSalt = bcrypt.genSaltSync(10);
 			req.body.password = bcrypt.hashSync(req.body.password, hashSalt);
-			req.body.userId = users.length + 1;
+			req.body.userId = collections.getUsersCount() + 1;
 			req.body.isAdmin = false;
-			users.push(req.body);
+			collections.addUsers(req.body);
 			res.status(201).json({
 				status: 'success',
 				message: 'Sign up was successful',
@@ -54,13 +53,14 @@ export default class UserController {
 			if ((_.isUndefined(username) && _.isUndefined(email)) || _.isUndefined(password)) {
 				message = 'Username/email and password not provided';
 			} else {
-				const length = users.length;
+				const length = collections.getUsersCount();
 				for (let i = 0; i < length; i++) {
-					if (users[i].email === email || users[i].username === username) {
-						if (!bcrypt.compareSync(password, users[i].password)) {
+          if (collections.getUsers()[i].email === email 
+              || collections.getUsers()[i].username === username) {
+						if (!bcrypt.compareSync(password, collections.getUsers()[i].password)) {
 							message = 'Invalid sign in credentials';
 						} else {
-							const { userId, isAdmin } = users[i];
+							const { userId, isAdmin } = collections.getUsers()[i];
 							return res.status(200).json({
 								status: 'success',
 								/**
@@ -108,9 +108,9 @@ export default class UserController {
 						issuer: process.env.ISSUER
 					});
 					if (decoded) {
-						const length = users.length;
+						const length = collections.getUsersCount();
 						for (let i = 0; i < length; i++) {
-							if (parseInt(users[i].userId, 10) === parseInt(decoded.userId, 10)) {
+							if (parseInt(collections.getUsers()[i].userId, 10) === parseInt(decoded.userId, 10)) {
 								req.body.decoded = decoded;
 								return next();
 							}
@@ -130,5 +130,24 @@ export default class UserController {
 					message
 				});
 			};
-		}
+    }
+    
+    /**
+     * Authorizes a user
+     * @static
+     * @returns {function} Returns an express middleware that handles the authorization
+     * @memberof UserController
+     */
+    static authorizeUser() {
+      return (req, res, next) => {
+        if (!req.body.decoded.isAdmin && req.body.status) {
+          return res.status(309).json({
+            status: 'fail',
+            message: 'Sorry, you do not have the privilege to update request status'
+          });
+        }
+
+        return next();
+      };
+    }
 	}
