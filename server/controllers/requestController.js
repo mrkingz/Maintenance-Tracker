@@ -126,7 +126,7 @@ export default class RequestController {
           request.priority = updates.priority || request.priority;
           request.description = updates.description || request.description;
           request.department = updates.department || request.department;
-          message = 'Your request was successfully updated';
+          message = 'Request successfully updated';
         }
 
         if (message) {
@@ -144,6 +144,37 @@ export default class RequestController {
       return res.status(404).json({
         status: 'fail',
         message: 'Sorry, request not found'
+      });
+    };
+  }
+
+  /**
+   * Deletets a request
+   * @static
+   * @returns {function} Returns an express middleware function that handles the POST request
+   * @memberof RequestController
+   */
+  static deleteRequest() {
+    return (req, res) => {
+      let request;
+      const { userId } = req.body.decoded;
+      const requestId = req.params.requestId;
+      const length = collections.getRequestsCount();
+      
+      for (let i = 0; i < length; i++) {
+        request = collections.getRequests()[i];
+        if (parseInt(request.requestId, 10) === parseInt(requestId, 10)
+            && parseInt(request.userId, 10) === parseInt(userId, 10)) {
+            collections.getRequests().splice(i, 1);
+          return res.status(200).json({
+            status: 'success',
+            message: 'Request successfully deleted'
+          });
+        }
+      }
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Request not found'
       });
     };
   }

@@ -30,6 +30,7 @@
       "prefer-const": 0,
       "no-plusplus": 0,
       "indent": 0,
+      "space-in-parens": 0,
       "spaced-comment": 0,
       "dot-notation": 0,
       "function-paren-newline": 0,
