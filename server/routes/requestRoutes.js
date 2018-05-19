@@ -20,9 +20,10 @@ requestRouter.get('/api/v1/users/requests/:requestId(\\d+)',
 	UserController.authenticateUser(),
 	RequestController.getUserRequest());
 
-requestRouter.put('/api/v1/users/requests/:requestId', 
-	UserController.authenticateUser(),
-	UserController.authorizeUser(),
-	RequestController.updateRequest());
+requestRouter.route('/api/v1/users/requests/:requestId(\\d+)')
+.all(UserController.authenticateUser())
+.put(UserController.authorizeUser(),
+	RequestController.updateRequest())
+.delete(RequestController.deleteRequest());
 	
 export default requestRouter;
