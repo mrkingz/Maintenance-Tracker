@@ -4,6 +4,7 @@ import app from '../../server/app';
 
 const expect = chai.expect;
 const server = supertest.agent(app);
+let token;
 
 const users = [{
   username: 'mrKingz',
@@ -115,6 +116,7 @@ describe('Test authentication routes', () => {
       })
       .end((err, res) => {
         const response = res.body;
+        token = response.data.token;
         expect(response).to.be.an('object');
         expect(res.statusCode).to.equal(200);
         expect(response.status).to.equal('success');
