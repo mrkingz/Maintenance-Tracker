@@ -262,6 +262,7 @@ describe('Test maintenance request routes', () => {
     .put('/api/v1/users/requests/1')
     .send({ priority: 'Urgent', token })
     .end((err, res) => {
+      console.log(res.body)
       const response = res.body;
       const request = response.data.request;
       expect(response).to.be.an('object');
