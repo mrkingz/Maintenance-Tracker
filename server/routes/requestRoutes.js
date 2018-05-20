@@ -20,6 +20,7 @@ requestRouter.route('/api/v1/users/requests/:requestId(\\d+)')
 .all(UserController.authenticateUser())
 .get(RequestController.getUserRequest())
 .put(UserController.authorizeUser(),
+  //RequestValidations.validateRequest(),
 	RequestController.updateRequest())
 .delete(RequestController.deleteRequest());
 	
