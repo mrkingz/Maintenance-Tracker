@@ -27,27 +27,27 @@ export default class RequestValidations {
          * Validates for undefined, empty fields and invalid entry
          */
         if (_.isUndefined(subject)) {
-          message = 'Request subject is required';
+          message = 'Request subject is required!';
         } else if (_.isUndefined(priority)) {
-          message = 'Request priority is required';
+          message = 'Request priority is required!';
         } else if (_.isUndefined(description)) {
-          message = 'Brief description is required';
+          message = 'Brief description is required!';
         } else if (_.isUndefined(department)) {
-          message = 'Department is required';
+          message = 'Department is required!';
         } else if (Validator.isEmpty(subject)) {
-          message = 'Please, enter request subject';
+          message = 'Please, enter request subject!';
         } else if (Validator.isEmpty(priority)) {
-          message = 'Please, enter request priority';
+          message = 'Please, enter request priority!';
         } else if (Validator.isEmpty(description)) {
-          message = 'Please, enter brief request description';
+          message = 'Please, enter brief request description!';
         } else if (Validator.isEmpty(department)) {
-          message = 'Please, select department';
+          message = 'Please, select department!';
         } else if (!subject.match(exp)) {
-          message = 'Invalid entry for priority';
+          message = 'Invalid entry for subject!';
         } else if (!priority.match(exp)) {
-          message = 'Invalid entry for request subject!';
+          message = 'Invalid entry for request priority!';
         } else if (!department.match(exp)) {
-          message = 'Invalid entry for department name';
+          message = 'Invalid entry for department name!';
         }
 
         if (_.isEmpty(message)) {
@@ -59,21 +59,21 @@ export default class RequestValidations {
         }
       } else if (req.method === 'PUT') {
         if (subject && Validator.isEmpty(subject)) {
-          message = 'Request subject cannot be empty';
+          message = 'Request subject cannot be empty!';
         } else if (subject && !subject.match(exp)) {
           message = 'Invalid entry for request subject!';
         } else if (priority && Validator.isEmpty(priority)) {
-          message = 'Request priority cannot be empty';
+          message = 'Request priority cannot be empty!';
         } else if (priority && !priority.match(exp)) {
           message = 'Invalid entry for request priority!';
         } else if (req.body.status && Validator.isEmpty(req.body.status)) {
-          message = 'Request status cannot be empty';
+          message = 'Request status cannot be empty!';
         } else if (req.body.status && !req.body.status.match(exp)) {
           message = 'Invalid entry for request status!';
         } else if (description && Validator.isEmpty(description)) {
-          message = 'Brief description cannot be empty';
+          message = 'Brief description cannot be empty!';
         } else if (department && Validator.isEmpty(department)) {
-          message = 'Department cannot be empty';
+          message = 'Department cannot be empty!';
         } else if (department && !department.match(exp)) {
           message = 'Invalid entry for request department!';
         }
