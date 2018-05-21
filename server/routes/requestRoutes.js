@@ -16,13 +16,11 @@ requestRouter.route('/api/v1/users/requests')
 	RequestController.createRequest())
 .get(RequestController.getUsersRequests());
 
-requestRouter.get('/api/v1/users/requests/:requestId(\\d+)', 
-	UserController.authenticateUser(),
-	RequestController.getUserRequest());
-
 requestRouter.route('/api/v1/users/requests/:requestId(\\d+)')
 .all(UserController.authenticateUser())
+.get(RequestController.getUserRequest())
 .put(UserController.authorizeUser(),
+  //RequestValidations.validateRequest(),
 	RequestController.updateRequest())
 .delete(RequestController.deleteRequest());
 	

@@ -26,8 +26,42 @@ const requests = [{
   subject: 'Faulty Gear box',
   priority: 'Normal',
   department: 'Mechanical',
+}, {
+  subject: '',
+  priority: 'Normal',
+  department: 'Mechanical',
+  description: 'Gear box failing to select reserve'
+}, {
+  subject: 'Faulty Gear Box',
+  priority: '',
+  department: 'Mechanical',
+  description: 'Gear box failing to select reserve'
+}, {
+  subject: 'Faulty Gear Box',
+  priority: 'Normal',
+  department: '',
+  description: 'Gear box failing to select reserve'
+}, {
+  subject: 'Faulty Gear Box',
+  priority: 'Normal',
+  department: 'Mechanical',
+  description: ''
+}, {
+  subject: '[]',
+  priority: 'Normal',
+  department: 'Mechanical',
+  description: 'Gear box failing to select reserve'
+}, {
+  subject: 'Faulty Gear Box',
+  priority: '12345',
+  department: 'Mechanical',
+  description: 'Gear box failing to select reserve'
+}, {
+  subject: 'Faulty Gear Box',
+  priority: 'Urgent',
+  department: 'Mechanical123',
+  description: 'Gear box failing to select reserve'
 }];
-
 describe('Test maintenance request routes', () => {
   before((done) => {
     server
@@ -91,6 +125,97 @@ describe('Test maintenance request routes', () => {
       expect(res.statusCode).to.equal(401);
       expect(response.status).to.equal('fail');
       expect(response.message).to.equal('Access denied! Invalid authentication token');
+      done();
+    });
+  });
+  it('It should not create maintenance request if subject is empty', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[5], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Please, enter request subject!');
+      done();
+    });
+  });
+  it('It should not create maintenance request if priority is empty', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[6], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Please, enter request priority!');
+      done();
+    });
+  });
+  it('It should not create maintenance request if department is empty', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[7], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Please, select department!');
+      done();
+    });
+  });  
+  it('It should not create maintenance request if description is empty', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[8], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Please, enter brief request description!');
+      done();
+    });
+  });
+  it('It should not create maintenance request if invalid priority', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[9], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Invalid entry for subject!');
+      done();
+    });
+  });
+  it('It should not create maintenance request for invalid priority', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[10], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Invalid entry for request priority!');
+      done();
+    });
+  });
+  it('It should not create maintenance request for invalid department name', (done) => {
+    server
+    .post('/api/v1/users/requests')
+    .send({ ...requests[11], token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(400);
+      expect(response.status).to.equal('fail');
+      expect(response.message).to.equal('Invalid entry for department name!');
       done();
     });
   });
@@ -185,6 +310,50 @@ describe('Test maintenance request routes', () => {
       done();
     });
   });
+  it('It should update a maintenance request', (done) => {
+    server
+    .put('/api/v1/users/requests/1')
+    .send({ priority: 'Urgent', token })
+    .end((err, res) => {
+      const response = res.body;
+      const request = response.data.request;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(202);
+      expect(response.status).to.equal('success');
+      expect(response.message).to.equal('Request successfully updated');
+      expect(response.data).to.be.an('object');
+      expect(request).to.have.own.property('requestId')
+      .to.be.a('number').that.is.equal(1);
+      expect(request).to.have.own.property('userId')
+      .to.be.a('number').that.is.equal(1);
+      expect(request).to.have.own.property('subject')
+      .to.be.a('string').that.is.equal(requests[0].subject);
+      expect(request).to.have.own.property('priority')
+      .to.be.a('string').that.is.equal('Urgent');
+      expect(request).to.have.own.property('status')
+      .to.be.a('string').that.is.equal('Pending');
+      expect(request).to.have.own.property('description')
+      .to.be.a('string').that.is.equal(requests[0].description);
+      expect(request).to.have.own.property('department')
+      .to.be.a('string').that.is.equal(requests[0].department);
+      expect(request).to.have.property('createdAt');
+      expect(request).to.have.property('updatedAt');
+      done();
+    });
+  });
+  it('It should delete a maintenance request if found', (done) => {
+    server
+    .delete('/api/v1/users/requests/1')
+    .send({ token })
+    .end((err, res) => {
+      const response = res.body;
+      expect(response).to.be.an('object');
+      expect(res.statusCode).to.equal(200);
+      expect(response.status).to.equal('success');
+      expect(response.message).to.equal('Request successfully deleted');
+      done();
+    });
+  });
   it('It should not create maintenance request if subject is not provided', (done) => {
     server
     .post('/api/v1/users/requests')
@@ -194,7 +363,7 @@ describe('Test maintenance request routes', () => {
       expect(response).to.be.an('object');
       expect(res.statusCode).to.equal(400);
       expect(response.status).to.equal('fail');
-      expect(response.message).to.equal('Request subject is required');
+      expect(response.message).to.equal('Request subject is required!');
       done();
     });
   });
@@ -207,7 +376,7 @@ describe('Test maintenance request routes', () => {
       expect(response).to.be.an('object');
       expect(res.statusCode).to.equal(400);
       expect(response.status).to.equal('fail');
-      expect(response.message).to.equal('Request priority is required');
+      expect(response.message).to.equal('Request priority is required!');
       done();
     });
   });
@@ -220,7 +389,7 @@ describe('Test maintenance request routes', () => {
       expect(response).to.be.an('object');
       expect(res.statusCode).to.equal(400);
       expect(response.status).to.equal('fail');
-      expect(response.message).to.equal('Department is required');
+      expect(response.message).to.equal('Department is required!');
       done();
     });
   });
@@ -233,7 +402,7 @@ describe('Test maintenance request routes', () => {
       expect(response).to.be.an('object');
       expect(res.statusCode).to.equal(400);
       expect(response.status).to.equal('fail');
-      expect(response.message).to.equal('Brief description is required');
+      expect(response.message).to.equal('Brief description is required!');
       done();
     });
   });
