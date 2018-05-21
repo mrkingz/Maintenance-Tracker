@@ -129,7 +129,7 @@ export default class UserController {
         }
       }
       return res.status(401).json({
-        status: 'fails',
+        status: 'fail',
         message
       });
     };

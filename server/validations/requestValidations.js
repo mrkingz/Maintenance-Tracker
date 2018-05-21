@@ -25,7 +25,7 @@ export default class RequestValidations {
        * Validates for undefined, empty fields and invalid entry
        */
       if (_.isUndefined(subject)) {
-        message = 'request subject is reuired';
+        message = 'Request subject is required';
       } else if (_.isUndefined(priority)) {
         message = 'Request priority is required';
       } else if (_.isUndefined(description)) {

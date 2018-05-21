@@ -22,6 +22,7 @@ export default class RequestController {
       collections.setRequests(requestDetails);
       return res.status(201).json({
         status: 'success',
+        message: 'Maintenance request successfully created',
         data: {
           ...collections.getRequests()[collections.getRequests().length - 1],
         }
@@ -82,7 +83,7 @@ export default class RequestController {
       }
       if (request) {
         return res.status(200).json({
-          status: 'fail',
+          status: 'success',
           data: {
             request
           }
