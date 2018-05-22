@@ -40,8 +40,6 @@
                   <i class="fa fa-eye"></i> View Requests</a>
                 <a href="?page=profile">
                   <i class="fa fa-user"></i> Profile</a>
-                <a href="?page=edit-password">
-                  <i class="fa fa-edit"></i> Edit password</a>
                 <a href="index.html">
                   <i class="fa fa-sign-out"></i> Sign out</a>
               </div>
@@ -66,7 +64,7 @@
                 <div class="content-wrapper">
 
                   <!-- Start request form -->
-                  <form class="create-request details hide" style="padding: 0">
+                  <form class="create-request details hide" style="padding: 20px 10px">
                     <div class="form-group">
                       <label for="subject">Request subject</label>
                       <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
@@ -91,7 +89,7 @@
                         <button class="clear-file">&times;</button>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="create-button">
                       <button class="button dark" style="width: auto">Submit</button>
                     </div>
                   </form>
@@ -364,7 +362,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="data-group">
+                      <div class="data-group" id="update-button">
                         <button id="update">Update status</button>
                       </div>
                     </div>
@@ -373,7 +371,7 @@
                   <!-- End view request -->
 
                   <!-- Start user profile -->
-                  <div class="profile hide" style="width: 60%">
+                  <div class="profile hide" style="width: 60%"><br>
                     <div class="data-group">
                       <label for="">Staff ID</label>
                       <div class="data">
@@ -410,12 +408,16 @@
                         <input type="file" />
                       </div>
                     </div>
+                    <div class="data-group" id="edit-password">
+                        <a href="?page=edit-password" style="color: #16667D"><i class="fa fa-edit">
+                        </i> Edit password</a>
+                    </div><br>
                   </div>
                   <!-- End user profile -->
 
                   <!-- Start change password-->
                   <div class="edit-password hide details">
-                    <form>
+                    <form style="padding: 20px 10px; width: 70%">
                       <div class="form-group">
                         <label for="password">Password </label>
                           <input type="password" class="control" placeholder="Your password" />
