@@ -20,6 +20,35 @@ const users = [{
 }, {
   username: 'mrKingz007',
   email: 'example@gmail.com',
+}, {
+  email: 'example@gmail.com',
+  password: 'Password1'
+}, {
+  username: 'mrKingz007',
+  password: 'Password1'
+}, {
+  username: 'mrKingz007',
+  email: 'example',
+}, {
+  username: 'mr',
+  email: 'mrkingz@gmail.com',
+  password: 'Password1'
+}, {
+  username: 'mrKingz',
+  email: 'mrkingz@gmail.com',
+  password: 'Pass'
+}, {
+  username: '',
+  email: 'mrkingz@gmail.com',
+  password: 'Pass'
+}, {
+  username: 'mrKingz',
+  email: '',
+  password: 'Pass'
+}, {
+  username: 'mrKingz',
+  email: 'mrkingz@gmail.com',
+  password: ''
 }];
 
 describe('Test authentication routes', () => {
@@ -46,7 +75,7 @@ describe('Test authentication routes', () => {
         done();
       });
     });
-    it('It should fail to create user and and return unique username validation error message', (done) => {
+    it('It should fail to create user and return username not unique error message', (done) => {
       server
       .post('/api/v1/users/signup')
       .send(users[0])
@@ -58,7 +87,7 @@ describe('Test authentication routes', () => {
         done();
       });
     });
-    it('It should fail to create user and and return unique email validation error message', (done) => {
+    it('It should fail to create user and and return email not unique error message', (done) => {
       server
       .post('/api/v1/users/signup')
       .send(users[1])
@@ -78,7 +107,7 @@ describe('Test authentication routes', () => {
         const response = res.body;
         expect(res.statusCode).to.equal(400);
         expect(response.status).to.equal('fail');
-        expect(response.message).to.equal('Please, enter a valid email address');
+        expect(response.message).to.equal('Please, enter a valid email address!');
         done();
       });
     });
@@ -90,7 +119,108 @@ describe('Test authentication routes', () => {
         const response = res.body;
         expect(res.statusCode).to.equal(400);
         expect(response.status).to.equal('fail');
-        expect(response.message).to.equal('Username, email and password are required');
+        expect(response.message).to.equal('Username, email and password are required!');
+        done();
+      });
+    });
+    it('It should fail to create user and return an error message', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[4])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message).to.equal('Username, email and password are required!');
+        done();
+      });
+    });
+    it('It should fail to create user and return an error message', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[5])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message).to.equal('Username, email and password are required!');
+        done();
+      });
+    });
+    it('It should fail to create user and return an error message', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[6])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message).to.equal('Username, email and password are required!');
+        done();
+      });
+    });
+    it('It should fail to create user and return invalid username error', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[7])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message)
+        .to.equal('username, too short! Must be at least 3 characters long!');
+        done();
+      });
+    });
+    it('It should fail to create user and return invalid password error', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[8])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message)
+        .to.equal('Sorry, password too short! Must be at least 8 characters long!');
+        done();
+      });
+    });
+    it('It should fail to create user and return invalid username error', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[9])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message)
+        .to.equal('Please, enter your username!');
+        done();
+      });
+    });
+    it('It should fail to create user and return invalid password error', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[10])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message)
+        .to.equal('Please, enter your email address!');
+        done();
+      });
+    });
+    it('It should fail to create user and return invalid password error', (done) => {
+      server
+      .post('/api/v1/users/signup')
+      .send(users[11])
+      .end((err, res) => {
+        const response = res.body;
+        expect(res.statusCode).to.equal(400);
+        expect(response.status).to.equal('fail');
+        expect(response.message)
+        .to.equal('Please, enter your password!');
         done();
       });
     });
