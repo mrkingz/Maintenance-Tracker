@@ -23,7 +23,7 @@ app.all('/api', (req, res) => {
 app.all('*', (req, res) => {
   res.status('400').json({
     status: 'fail',
-    message: 'Sorry, there is nothing here!'
+    message: 'Sorry, we have got nothing here!'
   });
 });
 
