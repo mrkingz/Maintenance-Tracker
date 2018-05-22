@@ -58,28 +58,29 @@ export default class RequestValidations {
           return next();
         }
       } else if (req.method === 'PUT') {
-        if (subject && Validator.isEmpty(subject)) {
+        const { status } = req.body.status || '';
+        if (!_.isUndefined(subject) && Validator.isEmpty(subject)) {
           message = 'Request subject cannot be empty!';
-        } else if (subject && !subject.match(exp)) {
+        } else if (!_.isUndefined(subject) && !subject.match(exp)) {
           message = 'Invalid entry for request subject!';
-        } else if (priority && Validator.isEmpty(priority)) {
+        } else if (!_.isUndefined(priority) && Validator.isEmpty(priority)) {
           message = 'Request priority cannot be empty!';
-        } else if (priority && !priority.match(exp)) {
+        } else if (!_.isUndefined(priority) && !priority.match(exp)) {
           message = 'Invalid entry for request priority!';
-        } else if (req.body.status && Validator.isEmpty(req.body.status)) {
+        } else if (!_.isUndefined(req.body.status) && Validator.isEmpty(req.body.status || '')) {
           message = 'Request status cannot be empty!';
-        } else if (req.body.status && !req.body.status.match(exp)) {
+        } else if (!_.isUndefined(status) && !status.match(exp)) {
           message = 'Invalid entry for request status!';
-        } else if (description && Validator.isEmpty(description)) {
+        } else if (!_.isUndefined(description) && Validator.isEmpty(description)) {
           message = 'Brief description cannot be empty!';
-        } else if (department && Validator.isEmpty(department)) {
+        } else if (!_.isUndefined(department) && Validator.isEmpty(department)) {
           message = 'Department cannot be empty!';
-        } else if (department && !department.match(exp)) {
+        } else if (!_.isUndefined(department) && !department.match(exp)) {
           message = 'Invalid entry for request department!';
         }
 
         if (_.isEmpty(message)) {
-          const { decoded, status } = req.body;
+          const { decoded } = req.body;
           req.body = {
             decoded, subject, priority, description, department, status
           };
