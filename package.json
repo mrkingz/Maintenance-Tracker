@@ -5,13 +5,14 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --watch server --exec babel-node ./server/app.js",
-    "tests": "SET NODE_ENV=test && mocha --compilers js:babel-core/register server/test/**/*.js --timeout 20000 --exit",
-    "test": "cross-env NODE_ENV=test && mocha --timeout 10000 server/test/**/*.js --compilers js:babel-core/register --exit"
+    "tests": "SET NODE_ENV=test && mocha --compilers js:babel-core/register server/tests/**/*.js --timeout 10000 --exit",
+    "test": "cross-env NODE_ENV=test nyc mocha server/tests/**/*.js --timeout 10000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
     "exclude": [
       "ui",
-      "server/test"
+      "server/tests"
     ],
     "require": [
       "babel-register"
@@ -35,6 +36,7 @@
   "homepage": "https://github.com/mrkingz/Maintenance-Tracker#readme",
   "dependencies": {
     "babel-core": "^6.26.3",
+    "babel-plugin-istanbul": "^4.1.6",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
