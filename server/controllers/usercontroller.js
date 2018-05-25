@@ -32,6 +32,7 @@ export default class UserController {
           username: req.body.username,
           email: req.body.email,
           isAdmin: req.body.isAdmin,
+          password: req.body.password,
           createdAt: new Date()
         }
       });

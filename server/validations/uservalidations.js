@@ -81,7 +81,8 @@ export default class UserValidations {
   /**
    * Validates required fields
    * @static
-   * @returns {function} Returns an express middleware function that handles the validation for required fields
+   * @returns {function} Returns an express middleware function that handles 
+   * the validation for required fields
    * @memberof UserValidations
    */
   static isRequired() {

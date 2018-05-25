@@ -4,11 +4,13 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cookiePasrer from 'cookie-parser';
 import routers from './routes';
+import database from './database';
 
 dotenv.config();
 const app = express();
 
 app.use(logger('dev'));
+
 
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
