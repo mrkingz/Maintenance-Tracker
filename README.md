@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/mrkingz/Maintenance-Tracker.svg?branch=feature)](https://travis-ci.org/mrkingz/Maintenance-Tracker)
 [![Coverage Status](https://coveralls.io/repos/github/mrkingz/Maintenance-Tracker/badge.svg?branch=feature)](https://coveralls.io/github/mrkingz/Maintenance-Tracker?branch=feature)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d9cead78664ad2731767/maintainability)](https://codeclimate.com/github/mrkingz/Maintenance-Tracker/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d9cead78664ad2731767/test_coverage)](https://codeclimate.com/github/mrkingz/Maintenance-Tracker/test_coverage)
 
 # Maintenance-Tracker
 Maintenance Tracker App is an application that provides users with the ability to reach out to
