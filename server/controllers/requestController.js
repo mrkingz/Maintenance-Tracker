@@ -1,10 +1,13 @@
 import collections from '../collections';
+import database from '../database';
+import UtilityService from '../services/utilityService';
 
 /** 
  * @export
  * @class RequestController
+ * @extends {UtilityService}
  */
-export default class RequestController {
+export default class RequestController extends UtilityService {
 	/**
 	 * Creates a maintenance/repair request
 	 * @static
@@ -13,19 +16,29 @@ export default class RequestController {
 	 */
   static createRequest() {
     return (req, res) => {
-      const { decoded, ...requestDetails } = req.body;
+      const { decoded } = req.body;
       const moment = new Date();
-      requestDetails.requestId = collections.getRequests().length + 1;
-      requestDetails.userId = decoded.userId;
-      requestDetails.createdAt = moment;
-      requestDetails.updatedAt = moment;
-      collections.setRequests(requestDetails);
-      return res.status(201).json({
-        status: 'success',
-        message: 'Maintenance request successfully created',
-        data: {
-          ...collections.getRequests()[collections.getRequests().length - 1],
+      const fields = 'subject, priority, status, department, description, userid, createdat';
+      const sql = `INSERT INTO requests (${fields},  updatedat)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING ${fields}`;
+      database.getPool().connect((err, client, done) => {
+        if (err) {
+          return this.errorResponse(res, 500, database.getConnectionError(err));
         }
+        const {
+          subject, priority, status, department, description
+        } = req.body;
+        client.query(sql, [
+          subject, priority, status, department, description, decoded.userid, moment, moment
+        ], (err, result) => {
+          done();
+          if (err) {
+            return this.errorResponse(res, 500, 'Sorry, an error occured');
+          }
+          return this.successResponse(res, 201, 'Maintenance request successfully created', {
+            ...result.rows[0],
+          });
+        });
       });
     };
   }

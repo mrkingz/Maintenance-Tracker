@@ -34,7 +34,7 @@ export default class UserController extends UtilityService {
 
       const sql = `INSERT INTO 
                     users (email, username, password, isadmin, createdat, updatedat) 
-                    VALUES($1, $2, $3, $4, $5, $6)`;
+                    VALUES($1, $2, $3, $4, $5, $6) RETURNING userId`;
 
       database.getPool().connect((err, client, done) => {
         if (err) {
@@ -48,7 +48,7 @@ export default class UserController extends UtilityService {
               return this.errorResponse(res, 400, message);
             }
             return this.successResponse(res, 201, 'Sign up was successful', {
-              userId: result.rows.userId, username, email, isAdmin, createdAt: moment
+              userId: result.rows[0].userid, username, email, isAdmin, createdAt: moment
             });
           });
       });
@@ -80,11 +80,18 @@ export default class UserController extends UtilityService {
             return this.errorResponse(res, 500, 'Sorry, an error occured');
           } else if (!_.isEmpty(result.rows) &&
             bcrypt.compareSync(password, result.rows[0].password)) {
-            const { userId, isAdmin } = result.rows[0];
+            const { userid, isadmin } = result.rows[0];
             return this.successResponse(res, 200, 'Aunthentication was successful', {
-              // Generate token for user
+              /** 
+               * Generate token for this user
+               * Remember, user can sign up with email/username and password
+               * So, we need to sign jwt with username and email coming from the database
+               */ 
               token: jwt.sign({
-                userId, email, username, isAdmin,
+                userid, 
+                isadmin,
+                email: result.rows[0].email, 
+                username: result.rows[0].username
               }, process.env.SECRET_KEY, {
                   issuer: process.env.ISSUER,
                   subject: process.env.SUBJECT,
@@ -107,12 +114,12 @@ export default class UserController extends UtilityService {
   static authenticateUser() {
     return (req, res, next) => {
       let message = 'Access denied! Token not provided';
+      const error = new Error();
       let token = req.cookies.token || req.getAuthorization || req.query.token ||
         req.body.token || req.headers.token;
       if (token) {
         const regex = new RegExp('/^Bearer (\S+)$/');
         const match = regex.exec(token);
-
         token = (match) ? match[1] : token;
         let decoded;
         try {
@@ -120,27 +127,37 @@ export default class UserController extends UtilityService {
             issuer: process.env.ISSUER
           });
           if (decoded) {
-            const length = collections.getUsersCount();
-            for (let i = 0; i < length; i++) {
-              if (parseInt(collections.getUsers()[i].userId, 10) === parseInt(decoded.userId, 10)) {
+            const sql = 'SELECT userid FROM users WHERE userid = $1';
+            const { userid } = decoded;
+            database.getPool().connect((err, client, done) => {
+              if (err) {
+                error.code = 500;
+                message = database.getConnectionError(err);
+              }
+              client.query(sql, [userid], (e, result) => {
+                done();
+                if (e) {
+                  error.code = 500;
+                  return this.errorResponse(res, 500, database.getQuerryError());
+                } else if (_.isEmpty(result.rows[0])) {
+                  return this.errorResponse(res, 500, 'Sorry, user does not exist')
+                } 
                 req.body.decoded = decoded;
                 return next();
-              }
-            }
-            message = 'Sorry, user does not exist';
+              });
+            });
           }
-        } catch (error) {
-          if (error.message === 'jwt expired') {
+        } catch (err) {
+          if (err.message === 'jwt expired') {
             message = 'Access denied! Token has expired';
           } else {
             message = 'Access denied! Invalid authentication token';
           }
+          return this.errorResponse(res, 401, message);
         }
+      } else {
+        return this.errorResponse(res, 401, message);
       }
-      return res.status(401).json({
-        status: 'fail',
-        message
-      });
     };
   }
 
