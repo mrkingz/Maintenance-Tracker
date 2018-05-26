@@ -10,9 +10,18 @@ const { RequestValidations } = validations;
 
 const requestRouter = express.Router();
 
-requestRouter.post('/api/v1/users/requests',
-	UserController.authenticateUser(),
-	RequestValidations.validateRequest(),
-  RequestController.createRequest()
-);
+requestRouter.route('/api/v1/users/requests')
+.all(UserController.authenticateUser())
+.post(RequestValidations.validateRequest(),
+	RequestController.createRequest())
+.get(RequestController.getUsersRequests());
+
+requestRouter.route('/api/v1/users/requests/:requestId(\\d+)')
+.all(UserController.authenticateUser())
+.get(RequestController.getUserRequest())
+.put(UserController.authorizeUser(),
+  RequestValidations.validateRequest(),
+	RequestController.updateRequest())
+.delete(RequestController.deleteRequest());
+	
 export default requestRouter;

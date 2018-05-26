@@ -17,7 +17,7 @@ body {
 }
 
 body {
-    background-image: url('../images/custom_resized.jpg');
+    background-image: url('../images/workshop.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -95,6 +95,21 @@ button.user-button:hover,
 button.user-button:focus {
   color:rgba(1,1,1, .7);
 }
+#edit-password {
+  margin-top: 10px; 
+  margin-bottom: 12;  
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#create-button {
+  margin-top: 10px;
+}
+
+#update-button {
+  margin-top: 12px; 
+  margin-bottom: 15px;
+}
 
 button.recovery {
     color: darkred;
@@ -155,8 +170,7 @@ img.logo {
 .index-wrapper h3 {
     margin: 0px 15px;
     color: #fff;
-    color: #000;
-    text-shadow: 2px 2px 8px #fff;
+    text-shadow: 2px 2px 8px #111;
 }
 
 .form-group {
@@ -215,13 +229,13 @@ form {
 }
 
 .header span {
-    font-size: 14px; 
+    font-size: 18px; 
     font-weight: normal;
 }
 
 label[for] {
-    color: rgba(1,1,1, .8);
-    font-size: .8rem
+    color: rgba(1,1,1, .85);
+    font-size: .85rem
 }
 
 
@@ -409,7 +423,7 @@ input[type='file'] {
 
 .content-wrapper {
     border: 1px solid #e2e0d8;
-    padding: 20px 10px; 
+    padding: 4px 10px; 
     border-radius: 4px;
 }
 
@@ -539,7 +553,7 @@ div[placeholder]:not([placeholder=""]):empty::before {
 
  .search-container {
   border-bottom: 1px solid #e2e0d8;
-  padding: 10px 0px 5px;
+  padding-bottom: 5px;
   direction: rtl;
 } 
 

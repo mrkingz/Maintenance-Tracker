@@ -10,6 +10,7 @@ const app = express();
 
 app.use(logger('dev'));
 
+
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(cookiePasrer());
@@ -21,7 +22,10 @@ app.all('/api', (req, res) => {
 });
 
 app.all('*', (req, res) => {
-  res.status('200').send('Sorry, there is nothing here!');
+  res.status('400').json({
+    status: 'fail',
+    message: 'Sorry, there is nothing here!'
+  });
 });
 
 const port = process.env.PORT || 8000;
