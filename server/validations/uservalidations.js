@@ -74,7 +74,9 @@ export default class UserValidations extends UtilityService {
         }
         client.query(sql, [value], (err, result) => {
           done();
-          if (result.rows.length > 0) {
+          if (err) {
+            return this.errorResponse(res, 500, 'Sorry, an error occured');
+          } else if (result.rows.length > 0) {
             return res.status(409).json({
               status: 'fail',
               message: `${string} has been used`
