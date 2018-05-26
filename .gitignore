@@ -1,5 +1,2 @@
 debug.log
 .env
-coverage/
-.nyc_output/
-node_modules/
