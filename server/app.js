@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cookiePasrer from 'cookie-parser';
 import routers from './routes';
-import database from './database';
 
 dotenv.config();
 const app = express();

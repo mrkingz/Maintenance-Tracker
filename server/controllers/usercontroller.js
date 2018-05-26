@@ -3,14 +3,19 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import collections from '../collections';
+import database from '../database';
+import UtilityService from '../services/utilityService';
 
 dotenv.load();
 
 /**
+ * 
+ * 
  * @export
  * @class UserController
+ * @extends {UtilityService}
  */
-export default class UserController {
+export default class UserController extends UtilityService {
   /**
    * 
    * @static
@@ -21,20 +26,31 @@ export default class UserController {
     return (req, res) => {
       const hashSalt = bcrypt.genSaltSync(10);
       req.body.password = bcrypt.hashSync(req.body.password, hashSalt);
-      req.body.userId = collections.getUsersCount() + 1;
-      req.body.isAdmin = false;
-      collections.addUsers(req.body);
-      res.status(201).json({
-        status: 'success',
-        message: 'Sign up was successful',
-        data: {
-          userId: req.body.userId,
-          username: req.body.username,
-          email: req.body.email,
-          isAdmin: req.body.isAdmin,
-          password: req.body.password,
-          createdAt: new Date()
+      const error = new Error();
+      error.code = 500;
+      const moment = new Date();
+      const isAdmin = false;
+      const { email, username, password } = req.body;
+
+      const sql = `INSERT INTO 
+                    users (email, username, password, isadmin, createdat, updatedat) 
+                    VALUES($1, $2, $3, $4, $5, $6)`;
+
+      database.getPool().connect((err, client, done) => {
+        if (err) {
+          return this.errorResponse(res, 400, database.getConnectionError(err));
         }
+        client.query(sql, [email, username, password, isAdmin, moment, moment],
+          (err, result) => {
+          done();
+          if (err) {
+            const message = 'Sorry, something went wrong! Could not create account';
+            return this.errorResponse(res, 400, message);
+          }
+          return this.successResponse(res, 201, 'Sign up was successful', {
+            userId: result.rows.userId, username, email, isAdmin, createdAt: moment
+          });
+        });
       });
     };
   }

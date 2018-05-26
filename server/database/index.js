@@ -14,9 +14,17 @@ class Database {
    * @memberof Database
    */
   constructor(config) {
-    this.error = new Error();
-    this.error.message = '';
     this.pool = new pg.Pool(config);
+  }
+
+  /**
+   * Gets an error message if database connection fails
+   * @param {any} err 
+   * @returns {string} The error message
+   * @memberof Database
+   */
+  getConnectionError(err) {
+    return `Database connection fail ${err}`;
   }
 
   /**
