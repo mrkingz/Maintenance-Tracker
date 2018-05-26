@@ -77,7 +77,7 @@ export default class UserController extends UtilityService {
         client.query(sql, [email, username], (err, result) => {
           done();
           if (err) {
-            return this.errorResponse(res, 500, 'Sorry, an error occured');
+            return this.errorResponse(res, 500, database.getQueryError());
           } else if (!_.isEmpty(result.rows) &&
             bcrypt.compareSync(password, result.rows[0].password)) {
             const { userid, isadmin } = result.rows[0];
@@ -138,7 +138,7 @@ export default class UserController extends UtilityService {
                 done();
                 if (e) {
                   error.code = 500;
-                  return this.errorResponse(res, 500, database.getQuerryError());
+                  return this.errorResponse(res, 500, database.getQueryError());
                 } else if (_.isEmpty(result.rows[0])) {
                   return this.errorResponse(res, 500, 'Sorry, user does not exist')
                 } 
