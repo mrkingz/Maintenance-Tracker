@@ -19,12 +19,21 @@ class Database {
 
   /**
    * Gets an error message if database connection fails
-   * @param {any} err 
-   * @returns {string} The error message
+   * @param {any} err error object thrown
+   * @returns {string} Returns the error message
    * @memberof Database
    */
   getConnectionError(err) {
     return `Database connection fail ${err}`;
+  }
+
+  /**
+   * Returns an error message if querry fails
+   * @returns {string} the error message
+   * @memberof Database
+   */
+  getQuerryError() {
+    return 'Sorry, an error occured';
   }
 
   /**
