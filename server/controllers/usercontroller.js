@@ -42,15 +42,15 @@ export default class UserController extends UtilityService {
         }
         client.query(sql, [email, username, password, isAdmin, moment, moment],
           (err, result) => {
-          done();
-          if (err) {
-            const message = 'Sorry, something went wrong! Could not create account';
-            return this.errorResponse(res, 400, message);
-          }
-          return this.successResponse(res, 201, 'Sign up was successful', {
-            userId: result.rows.userId, username, email, isAdmin, createdAt: moment
+            done();
+            if (err) {
+              const message = 'Sorry, something went wrong! Could not create account';
+              return this.errorResponse(res, 400, message);
+            }
+            return this.successResponse(res, 201, 'Sign up was successful', {
+              userId: result.rows.userId, username, email, isAdmin, createdAt: moment
+            });
           });
-        });
       });
     };
   }
@@ -65,43 +65,35 @@ export default class UserController extends UtilityService {
   static signin() {
     return (req, res) => {
       const { username, email, password } = req.body;
-      let message = 'Invalid sign in credentials';
 
       if ((_.isUndefined(username) && _.isUndefined(email)) || _.isUndefined(password)) {
-        message = 'Username/email and password not provided';
-      } else {
-        const length = collections.getUsersCount();
-        for (let i = 0; i < length; i++) {
-          if (collections.getUsers()[i].email === email
-            || collections.getUsers()[i].username === username) {
-            if (!bcrypt.compareSync(password, collections.getUsers()[i].password)) {
-              message = 'Invalid sign in credentials';
-            } else {
-              const { userId, isAdmin } = collections.getUsers()[i];
-              return res.status(200).json({
-                status: 'success',
-                message: 'Successfully signed in',
-								/**
-								 * Generate token for user
-								 */
-                data: {
-                  token: jwt.sign({
-                    userId, email, username, isAdmin,
-                  }, process.env.SECRET_KEY, {
-                      issuer: process.env.ISSUER,
-                      subject: process.env.SUBJECT,
-                      expiresIn: process.env.EXPIRATION
-                    })
-                }
-              });
-            }
-            break;
-          }
-        }
+        return this.errorResponse(res, 400, 'Username/email and password are required!');
       }
-      return res.status(401).json({
-        status: 'fail',
-        message
+      const sql = 'SELECT * FROM users WHERE email = $1 OR username = $2 LIMIT 1';
+      database.getPool().connect((err, client, done) => {
+        if (err) {
+          return this.errorResponse(res, 500, database.getConnectionError(err));
+        }
+        client.query(sql, [email, username], (err, result) => {
+          done();
+          if (err) {
+            return this.errorResponse(res, 500, 'Sorry, an error occured');
+          } else if (!_.isEmpty(result.rows) &&
+            bcrypt.compareSync(password, result.rows[0].password)) {
+            const { userId, isAdmin } = result.rows[0];
+            return this.successResponse(res, 200, 'Aunthentication was successful', {
+              // Generate token for user
+              token: jwt.sign({
+                userId, email, username, isAdmin,
+              }, process.env.SECRET_KEY, {
+                  issuer: process.env.ISSUER,
+                  subject: process.env.SUBJECT,
+                  expiresIn: process.env.EXPIRATION
+                })
+            });
+          }
+          return this.errorResponse(res, 401, 'Invalid sign in credentials');
+        });
       });
     };
   }
@@ -161,12 +153,9 @@ export default class UserController extends UtilityService {
   static authorizeUser() {
     return (req, res, next) => {
       if (!req.body.decoded.isAdmin && req.body.status) {
-        return res.status(309).json({
-          status: 'fail',
-          message: 'Sorry, you do not have the privilege to update request status'
-        });
+        const message = 'Sorry, you do not have the privilege to update request status';
+        return this.errorResponse(res, 309, message);
       }
-
       return next();
     };
   }
