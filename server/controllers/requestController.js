@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import collections from '../collections';
 import database from '../database';
 import UtilityService from '../services/utilityService';
@@ -83,28 +84,22 @@ export default class RequestController extends UtilityService {
    */
   static getUserRequest() {
     return (req, res) => {
-      let request;
-      const requestId = req.params.requestId;
-      const { userId } = req.body.decoded;
-      const length = collections.getRequests().length;
-      for (let i = 0; i < length; i++) {
-        if (parseInt(collections.getRequests()[i].userId, 10) === parseInt(userId, 10)
-          && parseInt(collections.getRequests()[i].requestId, 10) === parseInt(requestId, 10)) {
-          request = collections.getRequests()[i];
-          break;
+      const requestid = req.params.requestId;
+      const { userid } = req.body.decoded;
+      const sql = 'SELECT * FROM requests WHERE userid = $1 AND requestid = $2';
+      database.getPool().connect((err, client, done) => {
+        if (err) {
+          return this.errorResponse(res, 500, database.getConnectionError(err));
         }
-      }
-      if (request) {
-        return res.status(200).json({
-          status: 'success',
-          data: {
-            request
+        client.query(sql, [userid, requestid], (err, result) => {
+          done();
+          if (err) {
+            return this.errorResponse(res, 500, database.getQuerryError());
+          } else if (isEmpty(result.rows)) {
+            return this.errorResponse(res, 404, 'Request not found');
           }
+          return this.successResponse(res, 200, undefined, result.rows[0]);
         });
-      }
-      return res.status(404).json({
-        status: 'fail',
-        message: 'Request not found'
       });
     };
   }
