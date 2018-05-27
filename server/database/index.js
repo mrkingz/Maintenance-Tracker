@@ -32,7 +32,7 @@ class Database {
    * @returns {string} the error message
    * @memberof Database
    */
-  getQuerryError() {
+  getQueryError() {
     return 'Sorry, an error occured';
   }
 

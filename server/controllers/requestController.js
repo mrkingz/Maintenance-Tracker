@@ -21,7 +21,7 @@ export default class RequestController extends UtilityService {
       const moment = new Date();
       const fields = 'subject, priority, status, department, description, userid, createdat';
       const sql = `INSERT INTO requests (${fields},  updatedat)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING ${fields}`;
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING requestid, ${fields}`;
       database.getPool().connect((err, client, done) => {
         if (err) {
           return this.errorResponse(res, 500, database.getConnectionError(err));
@@ -34,7 +34,7 @@ export default class RequestController extends UtilityService {
         ], (err, result) => {
           done();
           if (err) {
-            return this.errorResponse(res, 500, 'Sorry, an error occured');
+            return this.errorResponse(res, 500, database.getQueryError());
           }
           return this.successResponse(res, 201, 'Maintenance request successfully created', {
             ...result.rows[0],
@@ -52,26 +52,23 @@ export default class RequestController extends UtilityService {
    */
   static getUsersRequests() {
     return (req, res) => {
-      const { userId } = req.body.decoded;
-      const userRequests = [];
-      const length = collections.getRequests().length;
-      for (let i = 0; i < length; i++) {
-        if (parseInt(collections.getRequests()[i].userId, 10) === parseInt(userId, 10)) {
-          userRequests.push(collections.getRequests()[i]);
+      const { userid } = req.body.decoded;
+      const sql = 'SELECT * from requests WHERE userid = $1 ORDER BY updatedat DESC';
+      database.getPool().connect((err, client, done) => {
+        if (err) {
+          return this.errorResponse(res, 500, database.getConnectionError());
         }
-      }
-
-      if (userRequests.length > 0) {
-        return res.status(200).json({
-          status: 'success',
-          data: {
-            requests: userRequests
+        client.query(sql, [userid], (err, result) => {
+          done();
+          if (err) {
+            return this.errorResponse(res, 500, database.getQueryError());
+          } else if (isEmpty(result.rows)) {
+            return this.successResponse(res, 404, undefined, 'Requests not found');
           }
+          return this.successResponse(res, 200, undefined, {
+            requests: result.rows
+          });
         });
-      }
-      return res.status(404).json({
-        status: 'fail',
-        message: 'Requests not found'
       });
     };
   }
@@ -86,7 +83,7 @@ export default class RequestController extends UtilityService {
     return (req, res) => {
       const requestid = req.params.requestId;
       const { userid } = req.body.decoded;
-      const sql = 'SELECT * FROM requests WHERE userid = $1 AND requestid = $2';
+      const sql = 'SELECT * FROM requests WHERE userid = $1 AND requestid = $2 LIMIT 1';
       database.getPool().connect((err, client, done) => {
         if (err) {
           return this.errorResponse(res, 500, database.getConnectionError(err));
@@ -94,9 +91,9 @@ export default class RequestController extends UtilityService {
         client.query(sql, [userid, requestid], (err, result) => {
           done();
           if (err) {
-            return this.errorResponse(res, 500, database.getQuerryError());
+            return this.errorResponse(res, 500, database.getQueryError());
           } else if (isEmpty(result.rows)) {
-            return this.errorResponse(res, 404, 'Request not found');
+            return this.successResponse(res, 404, undefined, 'Request not found');
           }
           return this.successResponse(res, 200, undefined, result.rows[0]);
         });

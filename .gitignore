@@ -1,2 +1,4 @@
 debug.log
 .env
+.vscode/
+node_modules/
