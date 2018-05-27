@@ -14,7 +14,12 @@ requestRouter.route('/api/v1/users/requests')
 .all(UserController.authenticateUser())
 .post(RequestValidations.validateRequest(),
 	RequestController.createRequest())
-.get(RequestController.getUsersRequests());
+.get(RequestController.getRequests({ isAdmin: false }));
+
+requestRouter.get('/api/v1/requests',
+  UserController.authenticateUser(),
+  UserController.authenticateUser(),
+  RequestController.getRequests({ isAdmin: true }));
 
 requestRouter.route('/api/v1/users/requests/:requestId(\\d+)')
 .all(UserController.authenticateUser())
@@ -23,5 +28,6 @@ requestRouter.route('/api/v1/users/requests/:requestId(\\d+)')
   RequestValidations.validateRequest(),
 	RequestController.updateRequest())
 .delete(RequestController.deleteRequest());
+
 	
 export default requestRouter;

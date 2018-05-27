@@ -45,20 +45,24 @@ export default class RequestController extends UtilityService {
   }
 
   /**
-   * Gets all user's requests
+   * Gets request lists
+   * Note: if privilege.isAdmin is true, this function gets all requests
+   * if privilege.isAdmin is false, this function gets all requests in belonging to a user
    * @static
-   * @returns {function} Returns an express middleware function that handles the GET request
+   * @param {object} privilege object containing isAdmin as privilede level of the user
+   * @returns {function} Returns an express middleware function that handles the get request
    * @memberof RequestController
    */
-  static getUsersRequests() {
+  static getRequests(privilege) {
     return (req, res) => {
       const { userid } = req.body.decoded;
-      const sql = 'SELECT * from requests WHERE userid = $1 ORDER BY updatedat DESC';
+      const condition = (privilege.isAdmin) ? '' : 'WHERE userid = $1';
+      const sql = `SELECT * from requests ${condition} ORDER BY updatedat DESC`;
       database.getPool().connect((err, client, done) => {
         if (err) {
           return this.errorResponse(res, 500, database.getConnectionError());
         }
-        client.query(sql, [userid], (err, result) => {
+        client.query(sql, (privilege.isAdmin) ? null : [userid], (err, result) => {
           done();
           if (err) {
             return this.errorResponse(res, 500, database.getQueryError());

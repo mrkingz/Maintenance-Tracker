@@ -169,11 +169,13 @@ export default class UserController extends UtilityService {
    */
   static authorizeUser() {
     return (req, res, next) => {
+      let message;
       if (!req.body.decoded.isAdmin && req.body.status) {
-        const message = 'Sorry, you do not have the privilege to update request status';
-        return this.errorResponse(res, 309, message);
+        message = 'Sorry, you are not authorized to update request status!';
+      } else if (!req.body.decoded.isAdmin) {
+        message = 'Sorry, you are not authorized to perform this operation!';
       }
-      return next();
+      return (_.isEmpty(message)) ? next() : this.errorResponse(res, 309, message);
     };
   }
 }
