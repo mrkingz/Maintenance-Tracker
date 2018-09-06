@@ -64,35 +64,37 @@
                 <div class="content-wrapper">
 
                   <!-- Start request form -->
-                  <form class="create-request details hide" style="padding: 20px 10px">
-                    <div class="form-group">
-                      <label for="subject">Request subject</label>
-                      <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
-                    </div>
-                    <div className="form-group" style="margin-bottom: 4px;">
-                      <label for="priority"> Request priority</label>
-                      <select class="control" id="priority" style="width: 100%; margin: 0px">
-                        <option value="">Request priority</option>
-                        <option value="">Normal</option>
-                        <option value="">Urgent</option>
-                        <option value="">Critical</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <label for="request-description"> Request decsription</label>
-                      <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description"></div>
-                    </div>
-                    <div class="form-group">
-                      <label for="files">Upload photo(s) of damage(s) (Optional)</label>
-                      <div class="files" id="files">
-                        <input type="file" />
-                        <button class="clear-file">&times;</button>
+                  <div class="details">
+                    <form class="create-request hide" style="padding: 20px 10px">
+                      <div class="form-group">
+                        <label for="subject">Request subject</label>
+                        <input type="subject" class="control" id="subject" autocomplete="off" placeholder="Request subject">
                       </div>
-                    </div>
-                    <div class="form-group" id="create-button">
-                      <button class="button dark" style="width: auto">Submit</button>
-                    </div>
-                  </form>
+                      <div class="form-group" style="margin-bottom: 4px;">
+                        <label for="priority"> Request priority</label>
+                        <select class="control" id="priority" style="width: 100%; margin: 0px">
+                          <option value="">Request priority</option>
+                          <option value="">Normal</option>
+                          <option value="">Urgent</option>
+                          <option value="">Critical</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="request-description"> Request decsription</label>
+                        <div class="editable-div control" id="request-description" contentEditable="true" placeholder="Your brief description"></div>
+                      </div>
+                      <div class="form-group">
+                        <label for="files">Upload photo(s) of damage(s) (Optional)</label>
+                        <div class="files" id="files">
+                          <input type="file" />
+                          <button class="clear-file">&times;</button>
+                        </div>
+                      </div>
+                      <div class="form-group" id="create-button">
+                        <button class="button dark" style="width: auto">Submit</button>
+                      </div>
+                    </form>
+                  </div>
                   <!-- End request form -->
 
                   <!-- Start request history-->
@@ -101,11 +103,11 @@
                       <div class="search-container">
                         <form>
                           <div class="dropdown">
-                            <button class="filter" onClick="displayDropdown('user-filters-menu'); return false">
+                            <button class="filter" onClick="displayDropdown('filters-menu'); return false">
                               <i class="fa fa-filter" style="font-size: 13px"></i> filter &nbsp;
                               <i class="fa fa-caret-down" style="font-size: 13px"></i>
                             </button>
-                            <div class="dropdown-content" id="user-filters-menu" style="min-width: 120px">
+                            <div class="dropdown-content" id="filters-menu" style="min-width: 120px">
                               <div>
                                 <select class="control" name="" id="">
                                   <option value="">By priority</option>
@@ -124,11 +126,15 @@
                                 </select>
                               </div>
                               <div>
-                                <button id="send-filters" onclick="return false"> Send</button>
+                                <button id="filter-send dark" onclick="return false">Send</button>
                               </div>
                             </div>
                           </div>
-                          <br>
+                          <select class="control type" name="" id="" style="direction: ltr; width: 30%">
+                            <option value="">All</option>
+                            <option value="">Maintenance</option>
+                            <option value="">Repair</option>
+                          </select>
                         </form>
                       </div>
                     </div>
@@ -147,7 +153,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                       <div class="rTableRow">
@@ -157,7 +163,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                       <div class="rTableRow">
@@ -167,7 +173,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                       <div class="rTableRow">
@@ -177,7 +183,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                       <div class="rTableRow">
@@ -187,7 +193,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                       <div class="rTableRow">
@@ -197,7 +203,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                       <div class="rTableRow">
@@ -207,7 +213,7 @@
                         <div class="rTableCell">Resolved</div>
                         <div class="rTableCell">
                           <button class="link">
-                            <i class="fa fa-eye"></i> Details</button>
+                            <i class="fa fa-eye"></i> More</button>
                         </div>
                       </div>
                     </div>
@@ -248,10 +254,10 @@
                                 </div>
                               </div>
                             </div>
-                            <select class="control departments" name="" id="" style="direction: ltr; width: 30%">
-                              <option value="">All departments</option>
-                              <option value="">Electrical</option>
-                              <option value="">Mechanical</option>
+                            <select class="control type" name="" id="" style="direction: ltr; width: 30%">
+                              <option value="">All</option>
+                              <option value="">Maintenance</option>
+                              <option value="">Repair</option>
                             </select>
                           </form>
                         </div>
@@ -273,7 +279,7 @@
                           <div class="rTableCell">Approved</div>
                           <div class="rTableCell">
                             <button class="link">
-                              <i class="fa fa-eye"></i> Details</button>
+                              <i class="fa fa-eye"></i> More</button>
                           </div>
                         </div>
                         <div class="rTableRow">
@@ -284,7 +290,7 @@
                           <div class="rTableCell">Approved</div>
                           <div class="rTableCell">
                             <button class="link">
-                              <i class="fa fa-eye"></i> Details</button>
+                              <i class="fa fa-eye"></i> More</button>
                           </div>
                         </div>
                         <div class="rTableRow">
@@ -295,14 +301,14 @@
                           <div class="rTableCell">Approved</div>
                           <div class="rTableCell">
                             <button class="link">
-                              <i class="fa fa-eye"></i> Details</button>
+                              <i class="fa fa-eye"></i> More</button>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <!-- Start details -->
-                    <div class="details request-details" style="display: none">
+                    <div class="request-details details" style="display: none">
                       <div class="data-group">
                         <label for="">Staff ID</label>
                         <div class="data">
@@ -345,15 +351,14 @@
                       </div>
                       <div class="data-group">
                         <label for="">Request status</label>
-                        <div class="data" style="width: 50%">
+                        <div class="data" style="width: 60%">
                           <span id="status">Pending</span>
                           <div class="status-update">
                             <select class="control" name="" id="" style="width: 100%; margin-top: 4px">
                               <option value="">Select status</option>
-                              <option value="Pending">Pending</option>
-                              <option value="Approved">Approved</option>
-                              <option value="Rejected">Reject</option>
-                              <option value="Resolved">Resolved</option>
+                              <option value="Approved">Approve</option>
+                              <option value="Rejected">Disapprove</option>
+                              <option value="Resolved">Resolve</option>
                             </select>
                             <div class="buttons-div">
                               <button class="dark save" style="width: auto">Update</button>
@@ -371,7 +376,8 @@
                   <!-- End view request -->
 
                   <!-- Start user profile -->
-                  <div class="profile hide" style="width: 60%"><br>
+                  <div class="profile details hide">
+                    <br>
                     <div class="data-group">
                       <label for="">Staff ID</label>
                       <div class="data">
@@ -409,9 +415,11 @@
                       </div>
                     </div>
                     <div class="data-group" id="edit-password">
-                        <a href="?page=edit-password" style="color: #16667D"><i class="fa fa-edit">
+                      <a href="?page=edit-password" style="color: #16667D">
+                        <i class="fa fa-edit">
                         </i> Edit password</a>
-                    </div><br>
+                    </div>
+                    <br>
                   </div>
                   <!-- End user profile -->
 
@@ -420,7 +428,7 @@
                     <form style="padding: 20px 10px; width: 70%">
                       <div class="form-group">
                         <label for="password">Password </label>
-                          <input type="password" class="control" placeholder="Your password" />
+                        <input type="password" class="control" placeholder="Your password" />
                       </div>
                       <div class="form-group">
                         <button class="button dark" style="width: auto">Continue</button>
@@ -437,7 +445,7 @@
       <footer class="footer">
         <div class="home-wrapper footer-content">
           <center>
-            &copy; copy right,
+            &copy; Copyright,
             <script>document.write(new Date().getFullYear())</script>. All right reserved
           </center>
         </div>

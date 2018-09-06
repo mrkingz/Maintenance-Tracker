@@ -1,13 +1,15 @@
 import _ from 'lodash';
 import Validator from 'validator';
+import UtilityService from '../services/utilityService';
 
 /**
  * 
  * 
- * @export
+ * @export UtilityService
  * @class RequestValidations
+ * @extends {UtilityService}
  */
-export default class RequestValidations {
+export default class RequestValidations extends UtilityService {
   /**
    * Validates request details
    * @static
@@ -17,81 +19,111 @@ export default class RequestValidations {
   static validateRequest() {
     return (req, res, next) => {
       let message;
-      const exp = /^[a-zA-Z\s]+$/;
-      const {
-        subject, priority, description, department
+      let {
+        decoded, subject, priority, description, type
       } = req.body;
+      subject = this.upperCaseFirst(this.trimWhiteSpace(subject, false), { bool: true });
+      priority = this.upperCaseFirst(this.trimWhiteSpace(priority));
+      description = this.upperCaseFirst(this.trimWhiteSpace(description, false));
+      type = this.upperCaseFirst(this.trimWhiteSpace(type, false));
 
       if (req.method === 'POST') {
-        /**
-         * Validates for undefined, empty fields and invalid entry
-         */
-        if (_.isUndefined(subject)) {
-          message = 'Request subject is required!';
-        } else if (_.isUndefined(priority)) {
-          message = 'Request priority is required!';
-        } else if (_.isUndefined(description)) {
-          message = 'Brief description is required!';
-        } else if (_.isUndefined(department)) {
-          message = 'Department is required!';
-        } else if (Validator.isEmpty(subject)) {
-          message = 'Please, enter request subject!';
-        } else if (Validator.isEmpty(priority)) {
-          message = 'Please, enter request priority!';
-        } else if (Validator.isEmpty(description)) {
-          message = 'Please, enter brief request description!';
-        } else if (Validator.isEmpty(department)) {
-          message = 'Please, select department!';
-        } else if (!subject.match(exp)) {
-          message = 'Invalid entry for subject!';
-        } else if (!priority.match(exp)) {
-          message = 'Invalid entry for request priority!';
-        } else if (!department.match(exp)) {
-          message = 'Invalid entry for department name!';
-        }
-
-        if (_.isEmpty(message)) {
-          const { decoded } = req.body;
-          req.body = {
-            decoded, subject, priority, description, department, status: 'Pending'
-          };
-          return next();
-        }
+        message = this.postValidations({
+          subject, priority, description, type
+        });
       } else if (req.method === 'PUT') {
-        const { status } = req.body.status || '';
-        if (!_.isUndefined(subject) && Validator.isEmpty(subject)) {
-          message = 'Request subject cannot be empty!';
-        } else if (!_.isUndefined(subject) && !subject.match(exp)) {
-          message = 'Invalid entry for request subject!';
-        } else if (!_.isUndefined(priority) && Validator.isEmpty(priority)) {
-          message = 'Request priority cannot be empty!';
-        } else if (!_.isUndefined(priority) && !priority.match(exp)) {
-          message = 'Invalid entry for request priority!';
-        } else if (!_.isUndefined(req.body.status) && Validator.isEmpty(req.body.status || '')) {
-          message = 'Request status cannot be empty!';
-        } else if (!_.isUndefined(status) && !status.match(exp)) {
-          message = 'Invalid entry for request status!';
-        } else if (!_.isUndefined(description) && Validator.isEmpty(description)) {
-          message = 'Brief description cannot be empty!';
-        } else if (!_.isUndefined(department) && Validator.isEmpty(department)) {
-          message = 'Department cannot be empty!';
-        } else if (!_.isUndefined(department) && !department.match(exp)) {
-          message = 'Invalid entry for request department!';
-        }
-
-        if (_.isEmpty(message)) {
-          const { decoded } = req.body;
-          req.body = {
-            decoded, subject, priority, description, department, status
-          };
-          return next();
-        }
+        message = this.putValidations({
+          subject, priority, description, type
+        });
       }
 
-      return res.status(400).json({
-        status: 'fail',
-        message
-      });
+      if (_.isEmpty(message)) {
+        req.body = {
+          decoded, subject, priority, description, type
+        };
+        next();
+      } else {
+        res.status(400).json({
+          status: 'fail',
+          message
+        });
+      }
     };
+  }
+
+  /**
+   * Validates request details during a POST operation
+   * @static
+   * @return {string} Returns the error message 
+   * @param {object} fields the input fields
+   * @method postValidations
+   * @memberof RequestValidations
+   */
+  static postValidations(fields) {
+    let message;
+    const {
+      subject, priority, description, type
+    } = fields;
+    /**
+     * Validates for undefined, empty fields and invalid entry
+     */
+    if (_.isUndefined(subject)) {
+      message = 'Request subject is required!';
+    } else if (_.isUndefined(priority)) {
+      message = 'Request priority is required!';
+    } else if (_.isUndefined(description)) {
+      message = 'Brief description is required!';
+    } else if (_.isUndefined(type)) {
+      message = 'Request type is required!';
+    } else if (Validator.isEmpty(subject)) {
+      message = 'Please, enter request subject!';
+    } else if (Validator.isEmpty(priority)) {
+      message = 'Please, enter request priority!';
+    } else if (Validator.isEmpty(description)) {
+      message = 'Please, enter brief request description!';
+    } else if (Validator.isEmpty(type)) {
+      message = 'Request type cannot be empty!';
+    } else if (!this.isAlpabetic(subject)) {
+      message = 'Invalid entry for subject!';
+    } else if (!this.isAlpabetic(priority)) {
+      message = 'Invalid entry for request priority!';
+    } else if (!this.isAlpabetic(type)) {
+      message = 'Invalid entry for request type!';
+    }
+
+    return message;
+  }
+
+  /**
+ * Validates request details during a POST operation
+ * @static
+ * @param {object} fields the input fields
+ * @return {string} Returns the error message 
+ * @method postValidations
+ * @memberof RequestValidations
+ */
+  static putValidations(fields) {
+    let message;
+    const {
+      subject, priority, description, type
+    } = fields;
+
+    if (subject && Validator.isEmpty(subject)) {
+      message = 'Request subject cannot be empty!';
+    } else if (subject && !this.isAlpabetic(subject)) {
+      message = 'Invalid entry for request subject!';
+    } else if (priority && Validator.isEmpty(priority)) {
+      message = 'Request priority cannot be empty!';
+    } else if (priority && !this.isAlpabetic(priority)) {
+      message = 'Invalid entry for request priority!';
+    } else if (description && Validator.isEmpty(description)) {
+      message = 'Brief description cannot be empty!';
+    } else if (type && Validator.isEmpty(type)) {
+      message = 'Request type cannot be empty!';
+    } else if (type && !this.isAlpabetic(type)) {
+      message = 'Invalid entry for request type!';
+    }
+
+    return message;
   }
 }

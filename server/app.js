@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cookiePasrer from 'cookie-parser';
 import routers from './routes';
+import UserController from './controllers/userController';
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,10 @@ app.use(routers.authRoutes);
 app.use(routers.requestRouter);
 
 app.all('/api', (req, res) => {
-  res.status('200').send('Connection ok');
+  res.status('200').send({
+    status: 'success',
+    message: 'Connection ok'
+  });
 });
 
 app.all('*', (req, res) => {
@@ -28,9 +32,14 @@ app.all('*', (req, res) => {
   });
 });
 
-const port = process.env.PORT || 8000;
-app.listen(port, () => {
-  console.log(`Server running on port: ${port}`);
-});
+try {
+  UserController.createAdmin();
+  const port = process.env.PORT || 8000;
+  app.listen(port, () => {
+    console.log(`Server running on port: ${port}`);
+  });
+} catch (err) {
+  console.log(`Something went wrong! Could not create admin: ${err}`);
+}
 
 export default app;

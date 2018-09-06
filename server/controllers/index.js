@@ -1,4 +1,4 @@
-import UserController from './usercontroller';
+import UserController from './userController';
 import RequestController from './requestController';
 
 const controllers = {
