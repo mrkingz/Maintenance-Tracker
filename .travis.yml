@@ -5,7 +5,7 @@ install:
 service:
   - postgres
 before_install:
-  - postgres -u postgres --password='' < tests/travis.sql
+  - postgres -u postgres --password='123456789' < tests/travis.sql
 script:
   - npm test
 env:

@@ -1,4 +1,5 @@
 debug.log
+.travis.yml
 .env
 .vscode/
 node_modules/
