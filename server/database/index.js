@@ -1,8 +1,17 @@
 import pg from 'pg';
 import { 
   devConfig, 
-  testConfig 
+  testConfig, 
+  prodConfig
 } from '../configs';
+
+let configs;
+const env = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : process.env.NODE_ENV;
+if (env === 'test') {
+  configs = testConfig;
+} else {
+  configs = env === 'development' ? devConfig : prodConfig;
+} 
 
 /**
  * @class Database
@@ -21,30 +30,34 @@ class Database {
    * Gets an error message if database connection fails
    * @param {any} err error object thrown
    * @returns {string} Returns the error message
+   * @method getConnectionError
    * @memberof Database
    */
   getConnectionError(err) {
-    return `Database connection fail ${err}`;
+    const string = `Database connection fail ${err || ''}`;
+    return string.trim();
   }
 
   /**
    * Returns an error message if querry fails
+   * @param {string} err the error returned from database
    * @returns {string} the error message
+   * @method getQueryError
    * @memberof Database
    */
-  getQueryError() {
-    return 'Sorry, an error occured';
+  getQueryError(err) {
+    const error = `Sorry, an error occured ${err || ''}`;
+    return error.trim();
   }
 
   /**
-   * 
-   * @return {oject} Returns the connection pool object
+   * Gets the connection pool instance
+   * @return {object} Returns the connection pool object
+   * @method getPool
    * @memberof Database
    */
   getPool() {
     return this.pool;
   }
 }
-export default new Database( 
-  process.env.NODE_ENV === 'test' ? testConfig : devConfig
-);
+export default new Database(configs);

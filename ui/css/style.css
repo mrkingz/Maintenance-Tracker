@@ -395,12 +395,12 @@ input[type='file'] {
 }
 
 .left-div {
-    width: 24%;
+    width: 20%;
     float: left;
 }
 
 .right-div {
-    width: 76%;
+    width: 80%;
     float: left;
 }
 
@@ -546,7 +546,7 @@ div[placeholder]:not([placeholder=""]):empty::before {
   border: 1px solid #0388a6;
 }
 
-.departments {
+.type {
   direction: ltr;
   width: 50%;
 }

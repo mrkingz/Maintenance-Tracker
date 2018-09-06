@@ -1,4 +1,4 @@
-import UserValidations from './uservalidations';
+import UserValidations from './userValidations';
 import RequestValidations from './requestValidations';
 
 const validations = {

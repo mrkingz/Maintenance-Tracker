@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.load();
 
 const testConfig = {
   user: process.env.DB_USERNAME_TEST,
@@ -18,7 +18,16 @@ const devConfig = {
   host: process.env.DB_HOST,
 };
 
+const prodConfig = {
+  user: process.env.DB_USERNAME_URL,
+  database: process.env.DB_NAME_URL,
+  password: process.env.DB_PASSWORD_URL,
+  port: process.env.DB_PORT_URL,
+  host: process.env.DB_HOST_URL,
+};
+
 export {
    devConfig,
+   prodConfig,
    testConfig
 };
